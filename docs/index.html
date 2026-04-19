@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller Mayo 2026 — Construye tu Startup con AI Agéntica</title>
+  <meta name="description" content="De idea a landing en 4 sesiones en vivo. Aprende Claude, Google Stitch, Cursor y GitHub. Sin código. Mayo 2026, Lima." />
+  <link rel="canonical" href="https://treevu-ai.github.io/ClawContentbot/" />
+  <!-- URL pública: taller-mayo-2026/operacion/url-publica.txt -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan:    #00f5ff;
+      --purple:  #a855f7;
+      --orange:  #ff6b35;
+      --pink:    #f472b6;
+      --bg:      #050814;
+      --bg2:     #080d1a;
+      --surface: rgba(255,255,255,0.04);
+      --border:  rgba(255,255,255,0.08);
+      --text:    #e2e8f0;
+      --muted:   #94a3b8;
+      --font:    'Inter', sans-serif;
+      --font2:   'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* ── FIXED FULL-PAGE BACKGROUND ── */
+    .page-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(168,85,247,0.4) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,245,255,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 60%, rgba(255,107,53,0.2) 0%, transparent 60%),
+        var(--bg);
+      pointer-events: none;
+    }
+    .page-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(5,8,20,0.5);
+      pointer-events: none;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 4px; }
+    ::selection { background: var(--purple); color: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(5,8,20,0.8);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      font-family: var(--font2);
+      font-size: 1.1rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-cta {
+      padding: 0.5rem 1.25rem;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border: none; border-radius: 100px;
+      color: #000; font-weight: 700; font-size: 0.85rem;
+      cursor: pointer; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168,85,247,0.4); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 8rem 1rem 4rem;
+      text-align: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: transparent;
+    }
+    .hero-bg::after { display: none; }
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.4; pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb-1 { width: 400px; height: 400px; background: var(--purple); top: -100px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 300px; height: 300px; background: var(--cyan); bottom: -50px; right: -50px; animation-delay: -3s; }
+    .orb-3 { width: 200px; height: 200px; background: var(--orange); top: 40%; left: 15%; animation-delay: -6s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+    .grid-overlay {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .particles { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .particle {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: var(--cyan); opacity: 0;
+      animation: rise 8s linear infinite;
+    }
+    @keyframes rise {
+      0% { opacity: 0; transform: translateY(100vh) scale(0); }
+      10% { opacity: 1; }
+      90% { opacity: 0.5; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1.5); }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(168,85,247,0.15);
+      border: 1px solid rgba(168,85,247,0.4);
+      border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; color: var(--purple);
+      margin-bottom: 1.5rem;
+      animation: pulse-border 2s ease-in-out infinite;
+    }
+    .hero-tagline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(0,245,255,0.08);
+      border: 1px solid rgba(0,245,255,0.25);
+      border-radius: 100px;
+      font-size: 0.85rem; font-weight: 600; color: var(--cyan);
+      margin-bottom: 1.5rem;
+      animation: fade-in 0.8s ease-out;
+    }
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(168,85,247,0.4); }
+      50% { border-color: rgba(168,85,247,0.8); box-shadow: 0 0 20px rgba(168,85,247,0.3); }
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--purple);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-title {
+      font-family: var(--font2);
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .grad-text {
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--pink) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      background-size: 200% 200%;
+      animation: grad-shift 4s ease-in-out infinite;
+    }
+    @keyframes grad-shift {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--muted); max-width: 640px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+    .hero-geo {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(0,245,255,0.08);
+      border: 1px solid rgba(0,245,255,0.2);
+      border-radius: 10px;
+      font-size: 0.8rem; color: var(--cyan);
+      margin-bottom: 2rem;
+    }
+    .hero-geo i { font-size: 0.9rem; }
+
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+
+    .btn-primary {
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border: none; border-radius: 100px;
+      color: #000; font-weight: 800; font-size: 1rem; font-family: var(--font);
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(168,85,247,0.3);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(168,85,247,0.5); }
+    .btn-primary:hover::after { opacity: 1; }
+
+    .btn-secondary {
+      padding: 1rem 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border); border-radius: 100px;
+      color: var(--text); font-weight: 600; font-size: 1rem; font-family: var(--font);
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.3s; backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover { border-color: var(--purple); background: rgba(168,85,247,0.1); transform: translateY(-2px); }
+
+    /* ── COUNTDOWN ── */
+    .countdown-wrapper {
+      display: inline-flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+      padding: 1.5rem 2.5rem;
+      background: rgba(8,13,26,0.8);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px; backdrop-filter: blur(20px);
+    }
+    .countdown-item { text-align: center; }
+    .countdown-num {
+      font-family: var(--font2); font-size: 2.8rem; font-weight: 800; line-height: 1;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .countdown-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+    .countdown-sep { font-size: 2rem; color: var(--border); align-self: center; font-weight: 300; }
+
+    /* ── STATS ── */
+    #stats { padding: 4rem 1rem; background: transparent; }
+    .stats-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem; text-align: center;
+    }
+    .stat-item { padding: 2rem 1rem; border-radius: 16px; background: rgba(8,13,26,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); }
+    .stat-num {
+      font-family: var(--font2); font-size: 3rem; font-weight: 800; line-height: 1;
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-label { font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; }
+
+    /* ── SHARED ── */
+    section { padding: 6rem 1rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; padding: 0.3rem 1rem;
+      border: 1px solid var(--border); border-radius: 100px;
+      font-size: 0.75rem; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font2); font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800; line-height: 1.15; margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 600px; }
+    .section-header { margin-bottom: 4rem; text-align: center; }
+    .section-header.left { text-align: left; }
+
+    .section-divider {
+      width: 60px; height: 4px; margin: 0 auto 1.5rem;
+      background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
+      border-radius: 4px;
+    }
+
+    .glass {
+      background: rgba(8,13,26,0.75);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s;
+    }
+    .glass:hover {
+      border-color: rgba(168,85,247,0.4);
+      background: rgba(8,13,26,0.85);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(168,85,247,0.1);
+    }
+
+    /* ── SESSIONS ── */
+    #sessions { background: transparent; }
+    .sessions-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;
+    }
+    .session-tagline {
+      font-size: 0.75rem; color: var(--cyan); margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    .session-card { padding: 2rem; }
+    .session-num {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font2); font-weight: 800; font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    .s0 { background: rgba(148,163,184,0.15); color: var(--muted); }
+    .s1 { background: rgba(0,245,255,0.15); color: var(--cyan); }
+    .s2 { background: rgba(168,85,247,0.15); color: var(--purple); }
+    .s3 { background: rgba(255,107,53,0.15); color: var(--orange); }
+    .s4 { background: rgba(244,114,182,0.15); color: var(--pink); }
+    .session-date { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .session-name { font-family: var(--font2); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .session-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .session-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tag {
+      padding: 0.2rem 0.6rem; border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+      background: rgba(255,255,255,0.07); color: var(--muted); border: 1px solid var(--border);
+    }
+
+    /* ── TOOLS ── */
+    #tools { background: transparent; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .tool-card { padding: 2rem; text-align: center; border-radius: 20px; position: relative; overflow: hidden; }
+    .tool-card::before {
+      content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s; border-radius: inherit;
+    }
+    .tc-cyan::before  { background: radial-gradient(circle at 50% 0%, rgba(0,245,255,0.15), transparent 70%); }
+    .tc-purple::before{ background: radial-gradient(circle at 50% 0%, rgba(168,85,247,0.15), transparent 70%); }
+    .tc-orange::before{ background: radial-gradient(circle at 50% 0%, rgba(255,107,53,0.15), transparent 70%); }
+    .tc-pink::before  { background: radial-gradient(circle at 50% 0%, rgba(244,114,182,0.15), transparent 70%); }
+    .tool-card:hover::before { opacity: 1; }
+    .tool-icon { font-size: 2.5rem; margin-bottom: 1rem; transition: transform 0.3s; display: block; }
+    .tool-card:hover .tool-icon { transform: scale(1.15) rotate(-5deg); }
+    .tool-name { font-family: var(--font2); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .tool-desc { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── PRICING ── */
+    #pricing { background: transparent; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: start; }
+    .pricing-card { padding: 2.5rem; border-radius: 24px; position: relative; overflow: hidden; transition: all 0.3s; }
+    .pricing-card.featured {
+      background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(0,245,255,0.08));
+      border: 1px solid rgba(168,85,247,0.4) !important;
+      transform: scale(1.03);
+    }
+    .pricing-card.featured:hover { transform: scale(1.05) translateY(-4px); }
+    .pricing-card.featured::after {
+      content: ''; position: absolute; inset: -1px; border-radius: 25px; z-index: -1;
+      background: linear-gradient(135deg, var(--cyan), var(--purple), var(--pink));
+      opacity: 0.4; filter: blur(20px); transition: opacity 0.3s;
+    }
+    .pricing-card.featured:hover::after { opacity: 0.7; }
+    .popular-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      padding: 0.3rem 0.8rem; border-radius: 100px;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      font-size: 0.7rem; font-weight: 700; color: #000;
+    }
+    .pricing-tier { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.75rem; font-weight: 600; }
+    .pricing-price { font-family: var(--font2); font-size: 3.5rem; font-weight: 800; line-height: 1; margin-bottom: 0.25rem; }
+    .pricing-price span { font-size: 1.5rem; font-weight: 600; vertical-align: top; margin-top: 0.5rem; display: inline-block; color: var(--muted); }
+    .pricing-period { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .pricing-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.5; }
+    .pricing-features { list-style: none; margin-bottom: 2rem; }
+    .pricing-features li {
+      padding: 0.6rem 0; font-size: 0.9rem; color: var(--text);
+      display: flex; align-items: center; gap: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .check { color: var(--cyan); font-size: 0.85rem; flex-shrink: 0; }
+    .xmark { color: var(--muted); font-size: 0.85rem; flex-shrink: 0; }
+    .btn-pricing {
+      width: 100%; padding: 1rem; border-radius: 14px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06); color: var(--text); font-weight: 700; font-size: 0.95rem;
+      font-family: var(--font); cursor: pointer; text-decoration: none; display: block; text-align: center;
+      transition: all 0.3s;
+    }
+    .btn-pricing:hover { background: rgba(255,255,255,0.12); border-color: var(--purple); }
+    .btn-pricing.featured-btn {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border-color: transparent; color: #000;
+      box-shadow: 0 8px 30px rgba(168,85,247,0.3);
+    }
+    .btn-pricing.featured-btn:hover { box-shadow: 0 15px 50px rgba(168,85,247,0.5); transform: translateY(-2px); }
+    .btn-pricing.hot-btn {
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      border-color: transparent; color: #fff;
+      box-shadow: 0 8px 30px rgba(255,107,53,0.3);
+    }
+    .btn-pricing.hot-btn:hover { box-shadow: 0 15px 50px rgba(255,107,53,0.5); transform: translateY(-2px); }
+
+    .payment-info {
+      margin-top: 3rem; padding: 1.5rem 2rem;
+      background: rgba(8,13,26,0.8); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; justify-content: center; text-align: center;
+    }
+    .pi-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .pi-val { font-family: var(--font2); font-weight: 700; font-size: 1rem; color: var(--cyan); margin-top: 0.2rem; }
+    .pi-sep { width: 1px; height: 40px; background: var(--border); }
+
+    /* ── SOCIAL PROOF ── */
+    #social-proof { background: transparent; }
+
+    /* ── GEO ── */
+    #geo { background: transparent; }
+    .geo-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .geo-card {
+      padding: 2rem; position: relative; overflow: hidden;
+    }
+    .geo-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0,245,255,0.08), transparent 70%);
+      opacity: 0; transition: opacity 0.3s; border-radius: inherit;
+    }
+    .geo-card:hover::before { opacity: 1; }
+    .geo-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .geo-num {
+      font-family: var(--font2); font-size: 2.5rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.75rem; line-height: 1;
+    }
+    .geo-card h3 {
+      font-family: var(--font2); font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 0.75rem; color: var(--text);
+    }
+    .geo-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .geo-quote {
+      max-width: 600px; margin: 0 auto;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(0,245,255,0.05), rgba(168,85,247,0.05));
+      border: 1px solid rgba(0,245,255,0.2);
+      border-radius: 16px; text-align: center;
+    }
+    .geo-quote p {
+      font-size: 1.1rem; font-style: italic; color: var(--text);
+      margin-bottom: 0.5rem; line-height: 1.6;
+    }
+    .geo-quote span { font-size: 0.8rem; color: var(--muted); }
+    .stars { color: #fbbf24; font-size: 1.1rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .testi-card { padding: 2rem; }
+    .testi-text { font-size: 0.95rem; line-height: 1.7; color: var(--muted); margin-bottom: 1.5rem; font-style: italic; }
+    .testi-text::before { content: '\201C'; color: var(--purple); font-size: 1.5rem; line-height: 0; vertical-align: -0.4rem; margin-right: 0.2rem; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem; color: #000; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 700; font-size: 0.9rem; }
+    .testi-role { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── FAQ ── */
+    #faq { background: transparent; }
+    .faq-list { max-width: 750px; }
+    .faq-item { border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; margin-bottom: 0.75rem; transition: border-color 0.3s; background: rgba(8,13,26,0.6); backdrop-filter: blur(10px); }
+    .faq-item.open { border-color: rgba(168,85,247,0.4); }
+    .faq-q {
+      padding: 1.25rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; font-weight: 600; font-size: 0.95rem;
+      background: rgba(8,13,26,0.5); user-select: none; gap: 1rem;
+    }
+    .faq-icon { color: var(--purple); transition: transform 0.3s; flex-shrink: 0; font-size: 0.85rem; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-a-inner { padding: 0 1.5rem 1.25rem; font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── CTA FINAL ── */
+    #cta { background: transparent; text-align: center; position: relative; overflow: hidden; }
+    #cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(168,85,247,0.25) 0%, transparent 70%);
+    }
+    .cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .cta-title { font-family: var(--font2); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; }
+    .cta-sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 3rem; line-height: 1.6; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 1rem; background: rgba(8,13,26,0.7); backdrop-filter: blur(10px); border-top: 1px solid var(--border); text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font2); font-size: 1.3rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--cyan); }
+    .footer-copy { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.5rem;
+      box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+      text-decoration: none; transition: all 0.3s;
+      animation: wa-pulse 2s ease-in-out infinite;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 15px 50px rgba(37,211,102,0.6); }
+    @keyframes wa-pulse {
+      0%,100% { box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 8px 50px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+    }
+
+    .trust-strip {
+      position: relative; z-index: 2;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    .trust-inner {
+      max-width: 920px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 1rem 1.5rem;
+      align-items: center; justify-content: center;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .trust-inner strong { color: var(--text); font-weight: 600; }
+    .trust-demo-link {
+      color: var(--cyan); font-weight: 700; text-decoration: none;
+      white-space: nowrap;
+    }
+    .trust-demo-link:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0.75rem 1rem; }
+      .pricing-card.featured { transform: scale(1); }
+      .countdown-num { font-size: 2rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+      .pi-sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+<!-- Fixed full-page background (visible through all sections) -->
+<div class="page-bg"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <i class="fa-solid fa-robot" style="margin-right:.4rem"></i>Taller AI 2026
+  </div>
+  <a href="#pricing" class="nav-cta">Inscríbete →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div class="hero-tagline">
+      <i class="fa-solid fa-location-dot"></i> Mayo 6–16, 2026 &nbsp;·&nbsp; Online en vivo (Lima GMT-5)
+    </div>
+
+    <div class="hero-badge">
+      <span class="dot"></span>
+      4 sesiones en vivo + Sesión 0 de Setup
+    </div>
+
+    <div class="hero-geo">
+      <i class="fa-solid fa-brain"></i>
+     GEO: Optimiza tu startup para que la AI te cite
+    </div>
+
+    <h1 class="hero-title">
+      Tu startup en 11 días,<br>
+      <span class="grad-text">sin escribir una sola línea de código</span>
+    </h1>
+
+    <p class="hero-sub">
+      El taller donde aprendés a construir tu startup con <strong>AI agéntica</strong>.
+      De la idea a una landing live en 4 sesiones. Solo necesitas una idea.
+    </p>
+
+    <div class="hero-tagline">
+      <i class="fa-solid fa-location-dot"></i> Mayo 6–16, 2026 &nbsp;·&nbsp; Online en vivo (Lima GMT-5)
+    </div>
+
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">
+        <i class="fa-solid fa-bolt"></i> Reserva tu lugar
+      </a>
+      <a href="#sessions" class="btn-secondary">
+        <i class="fa-regular fa-calendar"></i> Ver programa
+      </a>
+    </div>
+
+    <div class="countdown-wrapper">
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-days">00</div>
+        <div class="countdown-label">Días</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-hours">00</div>
+        <div class="countdown-label">Horas</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-minutes">00</div>
+        <div class="countdown-label">Min</div>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-seconds">00</div>
+        <div class="countdown-label">Seg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="Garantía y demo">
+  <div class="trust-inner">
+    <div>
+      <i class="fa-solid fa-shield-halved" style="color:var(--cyan);"></i>
+      <strong>Garantía:</strong> si después de la 1.ª sesión no es para vos, te devolvemos el 100% (misma condición que en FAQ).
+    </div>
+    <a class="trust-demo-link" href="https://wa.me/51903176598?text=Hola,%20quiero%20pedir%20la%20demo%20de%205%20min%20(o%20el%20enlace)%20del%20Taller%20Mayo%202026%20(desde%20landing)" target="_blank" rel="noopener noreferrer">
+      Pedir demo 5 min por WhatsApp →
+    </a>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-aos="fade-up">
+        <div class="stat-num" data-target="4">0</div>
+        <div class="stat-label">Sesiones en vivo</div>
+      </div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-num" data-target="8">0</div>
+        <div class="stat-label">Horas de formación</div>
+      </div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-num" data-target="4">0</div>
+        <div class="stat-label">Herramientas AI</div>
+      </div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-num" data-target="0">0</div>
+        <div class="stat-label">Líneas de código manual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SESSIONS -->
+<section id="sessions">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <span class="section-tag"><i class="fa-regular fa-calendar-days"></i> &nbsp;Programa</span>
+      <h2 class="section-title">Miércoles y Viernes<br><span class="grad-text">7–9 PM Lima</span></h2>
+      <p class="section-sub">Un sprint de 11 días para pasar de idea en blanco a landing live con tu primera IA.</p>
+    </div>
+
+    <div class="sessions-grid">
+      <div class="session-card glass" data-aos="fade-up" data-aos-delay="0">
+        <div class="session-num s0"><i class="fa-solid fa-rocket"></i></div>
+        <div class="session-tagline">🎯 <strong>Sesión 0 — Tu primer día</strong></div>
+        <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;6 de Mayo — Mié</div>
+        <div class="session-name">Setup &amp; Kickoff</div>
+        <div class="session-desc">Configuramos todo tu entorno: Claude, Cursor, GitHub y Google Stitch. Primer commit de tu startup en el Día 1.</div>
+        <div class="session-tags">
+          <span class="tag">Claude</span><span class="tag">Cursor</span><span class="tag">GitHub</span><span class="tag">Stitch</span>
+        </div>
+      </div>
+
+      <div class="session-card glass" data-aos="fade-up" data-aos-delay="80">
+        <div class="session-num s1">01</div>
+        <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;7 de Mayo — Jue</div>
+        <div class="session-name">Business Canvas con AI</div>
+        <div class="session-desc">Define tu propuesta de valor, cliente ideal y canales usando Claude como co-fundador.</div>
+        <div class="session-tags">
+          <span class="tag">Lean Canvas</span><span class="tag">Prompt Engineering</span>
+        </div>
+      </div>
+
+      <div class="session-card glass" data-aos="fade-up" data-aos-delay="160">
+        <div class="session-num s2">02</div>
+        <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;9 de Mayo — Vie</div>
+        <div class="session-name">Valida tu Idea</div>
+        <div class="session-desc">Entrevistas sintéticas, análisis de mercado y validación de hipótesis clave en tiempo real.</div>
+        <div class="session-tags">
+          <span class="tag">Market Research</span><span class="tag">ICP</span><span class="tag">Validación</span>
+        </div>
+      </div>
+
+      <div class="session-card glass" data-aos="fade-up" data-aos-delay="240">
+        <div class="session-num s3">03</div>
+        <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;14 de Mayo — Mié</div>
+        <div class="session-name">Diseña tu MVP</div>
+        <div class="session-desc">De wireframe a UI con Google Stitch. Componentes, paleta y copy generados por AI.</div>
+        <div class="session-tags">
+          <span class="tag">Google Stitch</span><span class="tag">UI/UX</span><span class="tag">MVP</span>
+        </div>
+      </div>
+
+      <div class="session-card glass" data-aos="fade-up" data-aos-delay="320">
+        <div class="session-num s4">04</div>
+        <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;16 de Mayo — Vie</div>
+        <div class="session-name">Build &amp; Launch Landing</div>
+        <div class="session-desc">Deploy de tu landing en vivo con Cursor + GitHub Pages. Formulario, analytics y listo.</div>
+        <div class="session-tags">
+          <span class="tag">Cursor</span><span class="tag">GitHub Pages</span><span class="tag">Deploy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <span class="section-tag"><i class="fa-solid fa-toolbox"></i> &nbsp;Stack</span>
+      <h2 class="section-title">Las herramientas que van a<br><span class="grad-text">cambiar cómo construyes</span></h2>
+      <p class="section-sub">Todas gratuitas o con trial. Sin suscripciones obligatorias para el taller.</p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-card glass tc-cyan" data-aos="zoom-in" data-aos-delay="0">
+        <span class="tool-icon">🤖</span>
+        <div class="tool-name">Claude</div>
+        <div class="tool-desc">Tu co-fundador AI. Estrategia, copy, código y análisis en lenguaje natural.</div>
+      </div>
+      <div class="tool-card glass tc-purple" data-aos="zoom-in" data-aos-delay="80">
+        <span class="tool-icon">🎨</span>
+        <div class="tool-name">Google Stitch</div>
+        <div class="tool-desc">Diseño de interfaces con AI. De texto a UI hermosa en minutos.</div>
+      </div>
+      <div class="tool-card glass tc-orange" data-aos="zoom-in" data-aos-delay="160">
+        <span class="tool-icon">⚡</span>
+        <div class="tool-name">Cursor</div>
+        <div class="tool-desc">IDE potenciado por AI. Escribe código real sin saber programar.</div>
+      </div>
+      <div class="tool-card glass tc-pink" data-aos="zoom-in" data-aos-delay="240">
+        <span class="tool-icon">🐙</span>
+        <div class="tool-name">GitHub</div>
+        <div class="tool-desc">Publica tu landing gratis con GitHub Pages. Versiona tu startup.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GEO -->
+<section id="geo">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <span class="section-tag"><i class="fa-solid fa-robot"></i> &nbsp;Nuevo 2026</span>
+      <h2 class="section-title">No solo posicionarte.<br><span class="grad-text">Sé citado por la AI.</span></h2>
+      <p class="section-sub">Aprende a diseñar tu startup para que ChatGPT, Perplexity y Google AI Overviews te mencionen como fuente autorizada.</p>
+    </div>
+
+    <div class="geo-grid">
+      <div class="geo-card glass" data-aos="fade-up" data-aos-delay="0">
+        <div class="geo-icon">📡</div>
+        <div class="geo-num">01</div>
+        <h3>Contenido que la AI cita</h3>
+        <p>Listas, comparativas y datos específicos. Aprende los formatos que los motores generativos prefieren.</p>
+      </div>
+      <div class="geo-card glass" data-aos="fade-up" data-aos-delay="100">
+        <div class="geo-icon">🎯</div>
+        <div class="geo-num">02</div>
+        <h3>Estructura legible por máquinas</h3>
+        <p>Headers jerárquicos, Markdown y datos verificables. Tu contenido debe ser comprensible para cualquier LLM.</p>
+      </div>
+      <div class="geo-card glass" data-aos="fade-up" data-aos-delay="200">
+        <div class="geo-icon">🏆</div>
+        <div class="geo-num">03</div>
+        <h3>Autoridad externa</h3>
+        <p>Reseñas, menciones en terceros y presencia en YouTube y Reddit. La AI cita fuentes que otras fuentes ya reconocen.</p>
+      </div>
+    </div>
+
+    <div class="geo-quote" data-aos="fade-up" data-aos-delay="300">
+      <p>"Ya no basta con aparecer en Google. Tu startup debe ser citada por la AI como fuente experta."</p>
+      <span>— Basado en el GEO Framework para PYMEs LatAm</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section id="social-proof">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <span class="section-tag"><i class="fa-solid fa-star"></i> &nbsp;Resultados</span>
+      <h2 class="section-title">Lo que dicen los<br><span class="grad-text">primeros builders</span></h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testi-card glass" data-aos="fade-up" data-aos-delay="0">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">En 4 sesiones pasé de una idea vaga a tener mi landing live con formulario de espera. No sabía nada de código. Ahora sí que puedo lanzar.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">María Fernández</div>
+            <div class="testi-role">Emprendedora, Lima</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card glass" data-aos="fade-up" data-aos-delay="100">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">El formato intensivo es perfecto. Cada sesión termina con un entregable real. La IA hizo en 2 horas lo que me hubiera tomado semanas contratar a alguien.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div>
+            <div class="testi-name">Carlos Vega</div>
+            <div class="testi-role">Consultor de negocios</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card glass" data-aos="fade-up" data-aos-delay="200">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">La mentoría 1:1 del plan Intensivo valió cada sol. Salí con un roadmap de 90 días y mi primera versión live. Increíble relación valor/precio.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Ana Quispe</div>
+            <div class="testi-role">Fundadora, EdTech Peru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-header" style="max-width:600px; margin-left:auto; margin-right:auto;">
+      <div class="section-divider"></div>
+      <span class="section-tag"><i class="fa-solid fa-tag"></i> &nbsp;Inversión</span>
+      <h2 class="section-title">Elige tu<br><span class="grad-text">nivel de compromiso</span></h2>
+      <p class="section-sub">Plazas limitadas. Precio aumenta conforme se llenan los cupos.</p>
+    </div>
+
+    <div class="pricing-grid" data-aos="fade-up" data-aos-delay="100">
+      <!-- Esencial -->
+      <div class="pricing-card glass">
+        <div class="pricing-tier">Esencial</div>
+        <div class="pricing-price"><span>US$</span>97</div>
+        <div class="pricing-period">pago único · acceso completo</div>
+        <div class="pricing-desc">Todo lo que necesitas para completar el taller y lanzar tu primera startup con AI.</div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-check check"></i> 4 sesiones en vivo (grabadas)</li>
+          <li><i class="fa-solid fa-check check"></i> Acceso al grupo privado</li>
+          <li><i class="fa-solid fa-check check"></i> Templates y prompts</li>
+          <li><i class="fa-solid fa-check check"></i> Soporte por WhatsApp</li>
+          <li><i class="fa-solid fa-xmark xmark"></i> Mentoría 1:1</li>
+          <li><i class="fa-solid fa-xmark xmark"></i> Revisión de tu startup</li>
+        </ul>
+        <a href="https://wa.me/51903176598?text=Hola,%20quiero%20inscribirme%20al%20plan%20Esencial%20(97%20USD)%20del%20Taller%20Mayo%202026%20(desde%20landing)" target="_blank" class="btn-pricing">
+          Inscribirme — US$97
+        </a>
+      </div>
+
+      <!-- Full Access -->
+      <div class="pricing-card glass featured">
+        <div class="popular-badge">⚡ Popular</div>
+        <div class="pricing-tier">Full Access</div>
+        <div class="pricing-price" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          <span style="-webkit-text-fill-color:var(--muted);color:var(--muted);">US$</span>197
+        </div>
+        <div class="pricing-period">pago único · todo incluido</div>
+        <div class="pricing-desc">La experiencia completa para emprendedores que quieren lanzar en serio.</div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-check check"></i> Todo del plan Esencial</li>
+          <li><i class="fa-solid fa-check check"></i> Revisión de tu Business Canvas</li>
+          <li><i class="fa-solid fa-check check"></i> Feedback en tu MVP</li>
+          <li><i class="fa-solid fa-check check"></i> Acceso a recursos bonus</li>
+          <li><i class="fa-solid fa-check check"></i> Sesión de Q&amp;A extra</li>
+          <li><i class="fa-solid fa-xmark xmark"></i> Mentoría 1:1 privada</li>
+        </ul>
+        <a href="https://wa.me/51903176598?text=Hola,%20quiero%20inscribirme%20al%20plan%20Full%20Access%20(197%20USD)%20del%20Taller%20Mayo%202026%20(desde%20landing)" target="_blank" class="btn-pricing featured-btn">
+          Inscribirme — US$197
+        </a>
+      </div>
+
+      <!-- Intensivo -->
+      <div class="pricing-card glass">
+        <div class="pricing-tier" style="color:var(--orange);">Intensivo</div>
+        <div class="pricing-price" style="background:linear-gradient(135deg,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          <span style="-webkit-text-fill-color:var(--muted);color:var(--muted);">US$</span>497
+        </div>
+        <div class="pricing-period">pago único · VIP + mentoría</div>
+        <div class="pricing-desc">Para founders que quieren resultados reales y acompañamiento personalizado.</div>
+        <ul class="pricing-features">
+          <li><i class="fa-solid fa-check check"></i> Todo del plan Full Access</li>
+          <li><i class="fa-solid fa-check check"></i> 2 sesiones mentoría 1:1 (60 min)</li>
+          <li><i class="fa-solid fa-check check"></i> Revisión completa de tu startup</li>
+          <li><i class="fa-solid fa-check check"></i> Plan de 90 días personalizado</li>
+          <li><i class="fa-solid fa-check check"></i> Acceso a red de founders</li>
+          <li><i class="fa-solid fa-check check"></i> Soporte prioritario 30 días</li>
+        </ul>
+        <a href="https://wa.me/51903176598?text=Hola,%20quiero%20inscribirme%20al%20plan%20Intensivo%20(497%20USD)%20del%20Taller%20Mayo%202026%20(desde%20landing)" target="_blank" class="btn-pricing hot-btn">
+          Inscribirme — US$497
+        </a>
+      </div>
+    </div>
+
+    <div class="payment-info" data-aos="fade-up" data-aos-delay="200">
+      <div>
+        <div class="pi-label"><i class="fa-solid fa-building-columns"></i> &nbsp;Transferencia / Depósito BCP</div>
+        <div class="pi-val">570-05165126-0-53</div>
+      </div>
+      <div class="pi-sep"></div>
+      <div>
+        <div class="pi-label">Envía tu voucher por WhatsApp</div>
+        <div class="pi-val">+51 903 176 598</div>
+      </div>
+      <div class="pi-sep"></div>
+      <div>
+        <div class="pi-label">También aceptamos</div>
+        <div class="pi-val">Yape · Plin · PayPal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-divider"></div>
+      <span class="section-tag"><i class="fa-regular fa-circle-question"></i> &nbsp;FAQ</span>
+      <h2 class="section-title">Preguntas<br><span class="grad-text">frecuentes</span></h2>
+    </div>
+
+    <div class="faq-list" data-aos="fade-up" data-aos-delay="100">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito saber programar? <i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">No. El taller está diseñado específicamente para personas sin experiencia técnica. Usamos herramientas AI que generan el código por ti. Solo necesitas ganas de aprender y una idea de negocio.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Las sesiones son grabadas? <i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Todas las sesiones quedan grabadas y disponibles para que las revises las veces que quieras. Tendrás acceso permanente a las grabaciones.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo seguir el taller desde otro país? <i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">Sí, el taller es 100% online vía Zoom. El horario es 7–9 PM Lima (GMT-5). Puedes seguirlo desde cualquier lugar del mundo.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué tipo de startup puedo construir? <i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">Cualquier tipo: SaaS, marketplace, landing de producto físico, servicio profesional, app de reservas… Lo importante es que tengas una idea. El taller te ayuda a validarla y construir la primera versión.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuántas plazas hay disponibles? <i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">El taller es pequeño y personalizado: máximo 20 participantes por cohorte. Esto garantiza que puedas hacer preguntas y recibir feedback real durante las sesiones en vivo.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Hay garantía de devolución? <i class="fa-solid fa-plus faq-icon"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">Si después de la primera sesión sientes que el taller no es para ti, te devolvemos el 100% del pago. Sin preguntas.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-content" data-aos="zoom-in">
+      <h2 class="cta-title">
+        Tu startup empieza<br>
+        <span class="grad-text">el 6 de Mayo</span>
+      </h2>
+      <p class="cta-sub">
+        11 días. 4 sesiones. Una landing live. Las plazas se llenan rápido — no esperes hasta la última semana.
+      </p>
+      <div class="cta-actions">
+        <a href="#pricing" class="btn-primary">
+          <i class="fa-solid fa-rocket"></i> Quiero mi lugar ahora
+        </a>
+        <a href="https://wa.me/51903176598?text=Hola,%20tengo%20dudas%20sobre%20el%20Taller%20Mayo%202026%20(desde%20landing)" target="_blank" class="btn-secondary">
+          <i class="fa-brands fa-whatsapp"></i> Tengo preguntas
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🤖 Taller AI 2026</div>
+  <div class="footer-links">
+    <a href="#sessions">Programa</a>
+    <a href="#tools">Stack</a>
+    <a href="#pricing">Precios</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://wa.me/51903176598?text=Hola%20(desde%20landing%20-%20pie)" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+  </div>
+  <div class="footer-copy">© 2026 Taller AI Agéntica · Lima, Perú · Todos los derechos reservados.</div>
+</footer>
+
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/51903176598?text=Hola,%20me%20interesa%20el%20Taller%20Mayo%202026%20(desde%20landing)" target="_blank" title="Escríbenos por WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+
+// Particles
+(function() {
+  const container = document.getElementById('particles');
+  const colors = ['#00f5ff','#a855f7','#ff6b35','#f472b6'];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 8 + 's';
+    p.style.animationDuration = (6 + Math.random() * 6) + 's';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    container.appendChild(p);
+  }
+})();
+
+// Countdown
+(function() {
+  const target = new Date('2026-05-06T19:00:00-05:00').getTime();
+  function update() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      document.querySelector('.countdown-wrapper').innerHTML =
+        '<div style="color:var(--cyan);font-weight:700;font-size:1.1rem;padding:1rem">🔴 En vivo ahora</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent    = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent   = String(h).padStart(2,'0');
+    document.getElementById('cd-minutes').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seconds').textContent = String(s).padStart(2,'0');
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+// Stat counters
+(function() {
+  const els = document.querySelectorAll('.stat-num[data-target]');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.target;
+      if (target === 0) { el.textContent = '0'; obs.unobserve(el); return; }
+      let val = 0;
+      const inc = target / 40;
+      const timer = setInterval(() => {
+        val += inc;
+        if (val >= target) { el.textContent = target; clearInterval(timer); }
+        else el.textContent = Math.floor(val);
+      }, 40);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  els.forEach(el => obs.observe(el));
+})();
+
+// FAQ accordion
+(function() {
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background =
+    window.scrollY > 50 ? 'rgba(5,8,20,0.97)' : 'rgba(5,8,20,0.8)';
+}, { passive: true });
+</script>
+</body>
+</html>
