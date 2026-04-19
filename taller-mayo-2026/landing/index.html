@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taller Mayo 2026 — Destrabá cuellos de botella con IA (PYMEs, equipos y freelancers)</title>
-  <meta name="description" content="Para equipos chicos y negocios que pierden tiempo entre herramientas y terceros: identificás dónde se frena el trabajo y publicás un proyecto web vivo con Claude, Stitch, Cursor y GitHub. Sin código. Mayo 2026, Lima." />
+  <title>Taller Mayo 2026 — IA agéntica para quitar cuellos de botella · Lima</title>
+  <meta name="description" content="Cuatro sesiones en vivo (más setup): IA agéntica para equipos y PYMEs que pierden tiempo entre herramientas y terceros. Identificas el cuello de botella y publicas tu web con Claude, Stitch, Cursor y GitHub. Sin código. Mayo 2026, Lima." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
 
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
@@ -21,18 +21,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cyan:    #00f5ff;
-      --purple:  #a855f7;
-      --orange:  #ff6b35;
-      --pink:    #f472b6;
-      --bg:      #050814;
-      --bg2:     #080d1a;
-      --surface: rgba(255,255,255,0.04);
-      --border:  rgba(255,255,255,0.08);
-      --text:    #e2e8f0;
+      --cyan:    #2dd4bf;
+      --purple:  #818cf8;
+      --orange:  #fb923c;
+      --pink:      #f472b6;
+      --bg:      #030712;
+      --bg2:     #0f172a;
+      --surface: rgba(255,255,255,0.035);
+      --border:  rgba(255,255,255,0.07);
+      --text:    #f1f5f9;
       --muted:   #94a3b8;
-      --font:    'Inter', sans-serif;
-      --font2:   'Space Grotesk', sans-serif;
+      --font:    'Plus Jakarta Sans', system-ui, sans-serif;
+      --font2:   'Syne', system-ui, sans-serif;
+      --radius:  16px;
+      --shadow:  0 24px 80px rgba(0,0,0,0.45);
     }
 
     html { scroll-behavior: smooth; }
@@ -52,16 +54,16 @@
       top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: -2;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(168,85,247,0.4) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,245,255,0.25) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 20% 60%, rgba(255,107,53,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 90% 70% at 70% -15%, rgba(129,140,248,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 15% 90%, rgba(45,212,191,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 40% at 50% 55%, rgba(251,146,60,0.06) 0%, transparent 60%),
         var(--bg);
       pointer-events: none;
     }
     .page-bg::after {
       content: '';
       position: absolute; inset: 0;
-      background: rgba(5,8,20,0.5);
+      background: radial-gradient(ellipse 120% 80% at 50% 100%, rgba(3,7,18,0.92) 0%, transparent 55%);
       pointer-events: none;
     }
 
@@ -73,13 +75,23 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 1rem 2rem;
+      padding: 1rem clamp(1rem, 4vw, 2.5rem);
       display: flex; align-items: center; justify-content: space-between;
-      backdrop-filter: blur(20px);
-      background: rgba(5,8,20,0.8);
+      flex-wrap: wrap; gap: 1rem;
+      backdrop-filter: blur(24px) saturate(1.2);
+      background: rgba(3,7,18,0.72);
       border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
+      transition: background 0.35s ease;
     }
+    .nav-links {
+      display: flex; align-items: center; gap: 1.25rem;
+      flex-wrap: wrap; justify-content: flex-end;
+    }
+    .nav-links a:not(.nav-cta) {
+      color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:not(.nav-cta):hover { color: var(--text); }
     .nav-logo {
       font-family: var(--font2);
       font-size: 1.1rem; font-weight: 700;
@@ -87,21 +99,22 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .nav-cta {
-      padding: 0.5rem 1.25rem;
+      padding: 0.55rem 1.35rem;
       background: linear-gradient(135deg, var(--cyan), var(--purple));
-      border: none; border-radius: 100px;
-      color: #000; font-weight: 700; font-size: 0.85rem;
+      border: none; border-radius: 999px;
+      color: #030712; font-weight: 700; font-size: 0.82rem;
       cursor: pointer; text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.25s;
+      white-space: nowrap;
     }
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168,85,247,0.4); }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(129,140,248,0.35); }
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
-      padding: 8rem 1rem 4rem;
+      padding: clamp(7rem, 12vw, 10rem) clamp(1rem, 4vw, 2rem) 4rem;
       text-align: center;
     }
     .hero-bg {
@@ -141,7 +154,65 @@
       100% { opacity: 0; transform: translateY(-10vh) scale(1.5); }
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-content { position: relative; z-index: 1; width: 100%; max-width: 1120px; margin: 0 auto; }
+    .hero-layout {
+      display: grid;
+      gap: clamp(2rem, 5vw, 3.5rem);
+      align-items: center;
+      text-align: left;
+    }
+    @media (min-width: 960px) {
+      .hero-layout { grid-template-columns: 1fr minmax(280px, 360px); }
+      #hero { align-items: center; }
+      .hero-main .hero-actions { justify-content: flex-start; }
+      .hero-main .hero-tagline-wrap { justify-content: flex-start; }
+    }
+    .hero-main { position: relative; z-index: 1; }
+    .hero-tagline-wrap {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .hero-panel {
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      background: rgba(15,23,42,0.65);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+    }
+    .hero-panel-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem;
+    }
+    .hero-session-ring {
+      display: flex; align-items: center; justify-content: center;
+      width: 88px; height: 88px; margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(45,212,191,0.15), rgba(129,140,248,0.15));
+      border: 2px solid rgba(129,140,248,0.35);
+      font-family: var(--font2); font-size: 2.35rem; font-weight: 800;
+      color: var(--text);
+    }
+    .hero-panel-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+      font-size: 0.82rem; color: var(--muted); line-height: 1.45;
+    }
+    .hero-panel-stats strong { display: block; color: var(--text); font-size: 0.92rem; margin-bottom: 0.15rem; }
+    .hero-panel-note {
+      margin-top: 1rem; padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem; color: var(--muted); line-height: 1.5;
+    }
+    .countdown-wrap-secondary {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.75rem;
+    }
+    .countdown-wrap-secondary > span {
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); font-weight: 600;
+    }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -155,12 +226,12 @@
     }
     .hero-tagline {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.5rem 1.25rem;
-      background: rgba(0,245,255,0.08);
-      border: 1px solid rgba(0,245,255,0.25);
-      border-radius: 100px;
-      font-size: 0.85rem; font-weight: 600; color: var(--cyan);
-      margin-bottom: 1.5rem;
+      padding: 0.45rem 1.1rem;
+      background: rgba(45,212,191,0.08);
+      border: 1px solid rgba(45,212,191,0.22);
+      border-radius: 999px;
+      font-size: 0.82rem; font-weight: 600; color: var(--cyan);
+      margin-bottom: 1rem;
       animation: fade-in 0.8s ease-out;
     }
     @keyframes fade-in {
@@ -179,46 +250,40 @@
 
     .hero-title {
       font-family: var(--font2);
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      font-weight: 800; line-height: 1.05;
+      font-size: clamp(2.15rem, 6vw, 3.85rem);
+      font-weight: 800; line-height: 1.08;
       letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.35rem;
     }
     .grad-text {
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--pink) 100%);
+      background: linear-gradient(122deg, var(--cyan) 0%, var(--purple) 48%, #c4b5fd 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      background-size: 200% 200%;
-      animation: grad-shift 4s ease-in-out infinite;
-    }
-    @keyframes grad-shift {
-      0%,100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
     }
 
     .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      color: var(--muted); max-width: 640px; margin: 0 auto 2.5rem;
-      line-height: 1.7;
+      font-size: clamp(1rem, 2.2vw, 1.17rem);
+      color: var(--muted); max-width: 34rem; margin: 0 0 2rem;
+      line-height: 1.75;
     }
     .hero-sub strong { color: var(--text); font-weight: 600; }
     .hero-geo {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: rgba(0,245,255,0.08);
-      border: 1px solid rgba(0,245,255,0.2);
+      padding: 0.45rem 0.95rem;
+      background: rgba(129,140,248,0.08);
+      border: 1px solid rgba(129,140,248,0.22);
       border-radius: 10px;
-      font-size: 0.8rem; color: var(--cyan);
-      margin-bottom: 2rem;
+      font-size: 0.78rem; color: #c4b5fd;
+      margin-bottom: 1.35rem;
     }
     .hero-geo i { font-size: 0.9rem; }
 
-    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+    .hero-actions { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0; }
 
     .btn-primary {
-      padding: 1rem 2.5rem;
+      padding: 0.95rem 2rem;
       background: linear-gradient(135deg, var(--cyan), var(--purple));
-      border: none; border-radius: 100px;
-      color: #000; font-weight: 800; font-size: 1rem; font-family: var(--font);
+      border: none; border-radius: 999px;
+      color: #030712; font-weight: 800; font-size: 0.95rem; font-family: var(--font);
       cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
       transition: all 0.3s;
       box-shadow: 0 0 30px rgba(168,85,247,0.3);
@@ -233,9 +298,9 @@
     .btn-primary:hover::after { opacity: 1; }
 
     .btn-secondary {
-      padding: 1rem 2.5rem;
+      padding: 0.95rem 2rem;
       background: var(--surface);
-      border: 1px solid var(--border); border-radius: 100px;
+      border: 1px solid var(--border); border-radius: 999px;
       color: var(--text); font-weight: 600; font-size: 1rem; font-family: var(--font);
       cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
       transition: all 0.3s; backdrop-filter: blur(10px);
@@ -244,11 +309,11 @@
 
     /* ── COUNTDOWN ── */
     .countdown-wrapper {
-      display: inline-flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
-      padding: 1.5rem 2.5rem;
-      background: rgba(8,13,26,0.8);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px; backdrop-filter: blur(20px);
+      display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      padding: 1.15rem 1.75rem;
+      background: rgba(15,23,42,0.72);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); backdrop-filter: blur(18px);
     }
     .countdown-item { text-align: center; }
     .countdown-num {
@@ -258,6 +323,55 @@
     }
     .countdown-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
     .countdown-sep { font-size: 2rem; color: var(--border); align-self: center; font-weight: 300; }
+
+    /* ── AGENTIC ── */
+    #agentic {
+      padding: clamp(4rem, 10vw, 6rem) 1rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(15,23,42,0.35);
+    }
+    .agentic-intro { max-width: 42rem; margin: 0 auto 3rem; text-align: center; }
+    .agentic-intro .section-sub { margin: 0 auto; max-width: 38rem; }
+    .agentic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .agentic-card {
+      padding: 1.75rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(3,7,18,0.5);
+      backdrop-filter: blur(14px);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .agentic-card:hover {
+      border-color: rgba(129,140,248,0.35);
+      transform: translateY(-4px);
+    }
+    .agentic-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      background: rgba(45,212,191,0.12);
+      border: 1px solid rgba(45,212,191,0.25);
+    }
+    .agentic-card:nth-child(2) .agentic-icon {
+      background: rgba(129,140,248,0.12);
+      border-color: rgba(129,140,248,0.25);
+    }
+    .agentic-card:nth-child(3) .agentic-icon {
+      background: rgba(251,146,60,0.1);
+      border-color: rgba(251,146,60,0.22);
+    }
+    .agentic-card h3 {
+      font-family: var(--font2); font-size: 1.13rem; font-weight: 700;
+      margin-bottom: 0.55rem; color: var(--text);
+    }
+    .agentic-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
 
     /* ── STATS ── */
     #stats { padding: 4rem 1rem; background: transparent; }
@@ -298,17 +412,17 @@
     }
 
     .glass {
-      background: rgba(8,13,26,0.75);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      backdrop-filter: blur(16px);
-      transition: all 0.3s;
+      background: rgba(15,23,42,0.42);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(18px);
+      transition: border-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
     }
     .glass:hover {
-      border-color: rgba(168,85,247,0.4);
-      background: rgba(8,13,26,0.85);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(168,85,247,0.1);
+      border-color: rgba(129,140,248,0.33);
+      background: rgba(15,23,42,0.55);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 56px rgba(0,0,0,0.38);
     }
 
     /* ── SESSIONS ── */
@@ -565,10 +679,15 @@
 
     @media (max-width: 640px) {
       nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 0.65rem; font-size: 0.82rem; }
       .pricing-card.featured { transform: scale(1); }
       .countdown-num { font-size: 2rem; }
-      .hero-actions { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 340px; justify-content: center; margin: 0 auto; }
+      .hero-layout { text-align: center; }
+      .hero-main .hero-actions { justify-content: center; }
+      .hero-main .hero-tagline-wrap { justify-content: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
       .pi-sep { display: none; }
     }
   </style>
@@ -580,9 +699,14 @@
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-logo">
-    <i class="fa-solid fa-robot" style="margin-right:.4rem"></i>Taller AI 2026
+    <i class="fa-solid fa-circle-nodes" style="margin-right:.4rem;opacity:.9"></i>Taller IA 2026
   </div>
-  <a href="#pricing" class="nav-cta">Inscríbete →</a>
+  <div class="nav-links">
+    <a href="#agentic">Enfoque</a>
+    <a href="#sessions">Programa</a>
+    <a href="#faq">FAQ</a>
+    <a href="#pricing" class="nav-cta">Inscribirse</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -595,63 +719,109 @@
   <div class="particles" id="particles"></div>
 
   <div class="hero-content">
-    <div class="hero-tagline">
-      <i class="fa-solid fa-location-dot"></i> Mayo 6–16, 2026 &nbsp;·&nbsp; Online en vivo (Lima GMT-5)
-    </div>
+    <div class="hero-layout">
+      <div class="hero-main">
+        <div class="hero-tagline-wrap">
+          <div class="hero-tagline">
+            <i class="fa-solid fa-location-dot"></i> Mayo 6 al 16, 2026 · Online en vivo · Lima (GMT-5)
+          </div>
+        </div>
 
-    <div class="hero-badge">
-      <span class="dot"></span>
-      4 sesiones en vivo + Sesión 0 de Setup
-    </div>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          IA agéntica · 4 sesiones en vivo + Sesión 0 (setup)
+        </div>
 
-    <div class="hero-geo">
-      <i class="fa-solid fa-brain"></i>
-      GEO + operación: que clientes (y la IA) entiendan qué hacés y por qué vos
-    </div>
+        <div class="hero-geo">
+          <i class="fa-solid fa-globe"></i>
+          GEO: clientes (y la IA) entienden tu oferta y tu autoridad
+        </div>
 
-    <h1 class="hero-title">
-      Destrabá cuellos de botella<br>
-      <span class="grad-text">con tecnología — sin ser programador</span>
-    </h1>
+        <h1 class="hero-title">
+          IA agéntica para<br>
+          <span class="grad-text">quitar cuellos de botella</span><br>
+          <span style="font-size:0.52em;font-weight:700;color:var(--muted);letter-spacing:-0.02em">sin depender solo de sistemas externos</span>
+        </h1>
 
-    <p class="hero-sub">
-      Pensado para <strong>PYMEs, equipos reducidos y freelancers</strong> que terminan la semana sin el entregable web o el proceso ordenado.
-      En 11 días vas a <strong>ubicar dónde se frena el trabajo</strong> y vas a salir con <strong>una página publicada</strong> usando IA agéntica — menos dependencia del “después lo vemos con sistemas”.
-    </p>
+        <p class="hero-sub">
+          Para <strong>equipos pequeños, PYMEs y freelancers</strong> en Perú que necesitan orden y un entregable web real.
+          En <strong>cuatro sesiones en vivo</strong> vas a <strong>ubicar el cuello de botella</strong> y vas a publicar <strong>una página</strong> usando <strong>agentes y asistentes</strong> (Claude, Cursor, GitHub, Stitch) — menos idas y vueltas con “cuando lo vea el área de sistemas”.
+        </p>
 
-    <div class="hero-tagline">
-      <i class="fa-solid fa-location-dot"></i> Mayo 6–16, 2026 &nbsp;·&nbsp; Online en vivo (Lima GMT-5)
-    </div>
+        <div class="hero-actions">
+          <a href="#pricing" class="btn-primary">
+            <i class="fa-solid fa-bolt"></i> Quiero inscribirme
+          </a>
+          <a href="#sessions" class="btn-secondary">
+            <i class="fa-regular fa-calendar"></i> Ver las 4 sesiones
+          </a>
+        </div>
 
-    <div class="hero-actions">
-      <a href="#pricing" class="btn-primary">
-        <i class="fa-solid fa-bolt"></i> Reserva tu lugar
-      </a>
-      <a href="#sessions" class="btn-secondary">
-        <i class="fa-regular fa-calendar"></i> Ver programa
-      </a>
-    </div>
-
-    <div class="countdown-wrapper">
-      <div class="countdown-item">
-        <div class="countdown-num" id="cd-days">00</div>
-        <div class="countdown-label">Días</div>
+        <div class="countdown-wrap-secondary">
+          <span>Cuenta regresiva · primera sesión nucleada en horario extendido (7 de mayo, 7:00 p.&nbsp;m.)</span>
+          <div class="countdown-wrapper">
+            <div class="countdown-item">
+              <div class="countdown-num" id="cd-days">00</div>
+              <div class="countdown-label">Días</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-item">
+              <div class="countdown-num" id="cd-hours">00</div>
+              <div class="countdown-label">Horas</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-item">
+              <div class="countdown-num" id="cd-minutes">00</div>
+              <div class="countdown-label">Min</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-item">
+              <div class="countdown-num" id="cd-seconds">00</div>
+              <div class="countdown-label">Seg</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="countdown-sep">:</div>
-      <div class="countdown-item">
-        <div class="countdown-num" id="cd-hours">00</div>
-        <div class="countdown-label">Horas</div>
-      </div>
-      <div class="countdown-sep">:</div>
-      <div class="countdown-item">
-        <div class="countdown-num" id="cd-minutes">00</div>
-        <div class="countdown-label">Min</div>
-      </div>
-      <div class="countdown-sep">:</div>
-      <div class="countdown-item">
-        <div class="countdown-num" id="cd-seconds">00</div>
-        <div class="countdown-label">Seg</div>
-      </div>
+
+      <aside class="hero-panel" aria-label="Formato del taller">
+        <div class="hero-panel-label">Agentic first</div>
+        <div class="hero-session-ring" aria-hidden="true">4</div>
+        <p style="text-align:center;font-size:0.92rem;color:var(--text);font-weight:700;margin-bottom:0.35rem">sesiones nucleares en vivo</p>
+        <p style="text-align:center;font-size:0.81rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.45">Más la <strong style="color:var(--text)">Sesión&nbsp;0</strong> de configuración (6 de mayo, mediodía)</p>
+        <div class="hero-panel-stats">
+          <div><strong>Ventana</strong>6–16 de mayo (calendario)</div>
+          <div><strong>Horario</strong>Mié y vie 7:00–9:00 p.&nbsp;m. Lima</div>
+        </div>
+        <p class="hero-panel-note">Lo que importa no es la cantidad de días en el calendario, sino el <strong>trabajo de cada sesión</strong>: plan con agentes, ejecuta con herramientas, valida y publica.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="agentic">
+  <div class="container">
+    <div class="section-header agentic-intro">
+      <div class="section-divider"></div>
+      <span class="section-tag"><i class="fa-solid fa-network-wired"></i> &nbsp;Metodología</span>
+      <h2 class="section-title">IA agéntica <span class="grad-text">primero</span></h2>
+      <p class="section-sub">No es solo “preguntarle a ChatGPT”. En el taller montas un <strong>flujo agéntico</strong>: investigación asistida, borradores, cambios en archivos reales y deploy. Tú marcas el rumbo; los agentes avanzan por pasos; tú cierras con criterio de negocio.</p>
+    </div>
+    <div class="agentic-grid">
+      <article class="agentic-card" data-aos="fade-up">
+        <div class="agentic-icon" aria-hidden="true"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>Describe el problema: el agente lo descompone</h3>
+        <p>Claridad de oferta, prioridades y alcance: el asistente te ayuda a armar pasos revisables antes de tocar código o diseño.</p>
+      </article>
+      <article class="agentic-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="agentic-icon" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>Ejecuta en el repositorio, no solo en el chat</h3>
+        <p>Cursor + GitHub: cambios concretos, versionados. Se acabó el “pásame el HTML final por correo”. Queda rastro del avance.</p>
+      </article>
+      <article class="agentic-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="agentic-icon" aria-hidden="true"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Publicación como criterio de “listo”</h3>
+        <p>Landing en GitHub Pages con formulario y analítica básica: un URL que tu equipo o tu red puede usar ya, no una maqueta eterna.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -660,7 +830,7 @@
   <div class="trust-inner">
     <div>
       <i class="fa-solid fa-shield-halved" style="color:var(--cyan);"></i>
-      <strong>Garantía:</strong> si después de la 1.ª sesión no es para vos, te devolvemos el 100% (misma condición que en FAQ).
+      <strong>Garantía:</strong> si después de la primera sesión ves que no es para ti, te devolvemos el 100% (igual que en la FAQ).
     </div>
     <a class="trust-demo-link" href="https://wa.me/51903176598?text=Hola,%20quiero%20pedir%20la%20demo%20de%205%20min%20(o%20el%20enlace)%20del%20Taller%20Mayo%202026%20(desde%20landing)" target="_blank" rel="noopener noreferrer">
       Pedir demo 5 min por WhatsApp →
@@ -682,7 +852,7 @@
       </div>
       <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
         <div class="stat-num" data-target="4">0</div>
-        <div class="stat-label">Herramientas AI</div>
+        <div class="stat-label">Piezas del stack integrado</div>
       </div>
       <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
         <div class="stat-num" data-target="0">0</div>
@@ -699,7 +869,7 @@
       <div class="section-divider"></div>
       <span class="section-tag"><i class="fa-regular fa-calendar-days"></i> &nbsp;Programa</span>
       <h2 class="section-title">Miércoles y Viernes<br><span class="grad-text">7–9 PM Lima</span></h2>
-      <p class="section-sub">Sprint de 11 días: del diagnóstico rápido a una página viva que respalde ventas, captación o tu servicio profesional.</p>
+      <p class="section-sub">Cuatro encuentros en vivo para pasar del diagnóstico rápido a una página publicada que respalde ventas, captación o tu servicio profesional.</p>
     </div>
 
     <div class="sessions-grid">
@@ -708,7 +878,7 @@
         <div class="session-tagline">🎯 <strong>Sesión 0 — Tu primer día</strong></div>
         <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;6 de Mayo — Mié</div>
         <div class="session-name">Setup &amp; Kickoff</div>
-        <div class="session-desc">Ordenamos tu entorno: Claude, Cursor, GitHub y Google Stitch. Primer cambio versionado el día 1 — así el equipo deja de improvisar en carpetas sueltas.</div>
+        <div class="session-desc">Ordenamos tu entorno: Claude, Cursor, GitHub y Google Stitch. Primer cambio versionado el día 1 — para que el equipo deje de improvisar en carpetas sueltas.</div>
         <div class="session-tags">
           <span class="tag">Claude</span><span class="tag">Cursor</span><span class="tag">GitHub</span><span class="tag">Stitch</span>
         </div>
@@ -718,7 +888,7 @@
         <div class="session-num s1">01</div>
         <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;7 de Mayo — Jue</div>
         <div class="session-name">Mapa del negocio con IA</div>
-        <div class="session-desc">Clarificá oferta, cliente ideal y canales; priorizá qué te frena hoy (ventas, operación o contenido) antes de invertir más horas.</div>
+        <div class="session-desc">Clarifica oferta, cliente ideal y canales; prioriza qué te frena hoy (ventas, operación o contenido) antes de invertir más horas.</div>
         <div class="session-tags">
           <span class="tag">Lean Canvas</span><span class="tag">Prompt Engineering</span>
         </div>
@@ -727,8 +897,8 @@
       <div class="session-card glass" data-aos="fade-up" data-aos-delay="160">
         <div class="session-num s2">02</div>
         <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;9 de Mayo — Vie</div>
-        <div class="session-name">Priorizá y validá</div>
-        <div class="session-desc">Investigación exprés y señales de mercado para no encallar en la suposición equivocada — útil tanto si vendés servicios como si operás una PYME.</div>
+        <div class="session-name">Prioriza y valida</div>
+        <div class="session-desc">Investigación exprés y señales de mercado para no encallar en la suposición equivocada — sirve tanto si vendes servicios como si operas una PYME.</div>
         <div class="session-tags">
           <span class="tag">Market Research</span><span class="tag">ICP</span><span class="tag">Validación</span>
         </div>
@@ -738,7 +908,7 @@
         <div class="session-num s3">03</div>
         <div class="session-date"><i class="fa-regular fa-calendar"></i> &nbsp;14 de Mayo — Mié</div>
         <div class="session-name">Prototipo que comunica</div>
-        <div class="session-desc">De boceto a interfaz con Google Stitch: algo que podés mostrar a clientes o al equipo sin semanas de ida y vuelta con diseño.</div>
+        <div class="session-desc">De boceto a interfaz con Google Stitch: algo que puedes mostrar a clientes o al equipo sin semanas de ida y vuelta con diseño.</div>
         <div class="session-tags">
           <span class="tag">Google Stitch</span><span class="tag">UI/UX</span><span class="tag">MVP</span>
         </div>
@@ -771,7 +941,7 @@
       <div class="tool-card glass tc-cyan" data-aos="zoom-in" data-aos-delay="0">
         <span class="tool-icon">🤖</span>
         <div class="tool-name">Claude</div>
-        <div class="tool-desc">Estrategia, textos, análisis y código guiado — hablás natural, la IA ejecuta borradores y cambios.</div>
+        <div class="tool-desc">Estrategia, textos, análisis y código guiado: hablas en natural, la IA ejecuta borradores y cambios.</div>
       </div>
       <div class="tool-card glass tc-purple" data-aos="zoom-in" data-aos-delay="80">
         <span class="tool-icon">🎨</span>
@@ -799,7 +969,7 @@
       <div class="section-divider"></div>
       <span class="section-tag"><i class="fa-solid fa-robot"></i> &nbsp;Nuevo 2026</span>
       <h2 class="section-title">Tu PYME también compite<br><span class="grad-text">en las respuestas de la IA</span></h2>
-      <p class="section-sub">Cuando ChatGPT o Perplexity recomiendan proveedores, cuenta la claridad de tu oferta y la autoridad que demostrás — no solo una lista de keywords.</p>
+      <p class="section-sub">Cuando ChatGPT o Perplexity recomiendan proveedores, cuenta la claridad de tu oferta y la autoridad que demuestras — no solo una lista de palabras clave.</p>
     </div>
 
     <div class="geo-grid">
@@ -807,7 +977,7 @@
         <div class="geo-icon">📡</div>
         <div class="geo-num">01</div>
         <h3>Contenido que la AI cita</h3>
-        <p>Listas, comparativas y datos específicos. Aprende los formatos que los motores generativos prefieren.</p>
+        <p>Listas, comparativas y datos específicos. Conoce los formatos que los motores generativos prefieren.</p>
       </div>
       <div class="geo-card glass" data-aos="fade-up" data-aos-delay="100">
         <div class="geo-icon">🎯</div>
@@ -885,7 +1055,7 @@
     <div class="section-header" style="max-width:600px; margin-left:auto; margin-right:auto;">
       <div class="section-divider"></div>
       <span class="section-tag"><i class="fa-solid fa-tag"></i> &nbsp;Inversión</span>
-      <h2 class="section-title">Elige tu<br><span class="grad-text">nivel de compromiso</span></h2>
+      <h2 class="section-title">Elige tu<br><span class="grad-text">plan</span></h2>
       <p class="section-sub">Plazas limitadas. Precio aumenta conforme se llenan los cupos.</p>
     </div>
 
@@ -984,7 +1154,7 @@
     <div class="faq-list" data-aos="fade-up" data-aos-delay="100">
       <div class="faq-item">
         <div class="faq-q">¿Necesito saber programar? <i class="fa-solid fa-plus faq-icon"></i></div>
-        <div class="faq-a"><div class="faq-a-inner">No. Está pensado para perfiles de negocio, operaciones y freelancers que ya trabajan con clientes u oficinas internas. La IA y Cursor te ayudan con el código; vos definís prioridades y contenido.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">No. Está pensado para perfiles de negocio, operaciones y freelancers que ya trabajan con clientes u oficinas internas. La IA y Cursor te ayudan con el código; tú defines prioridades y contenido.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-q">¿Las sesiones son grabadas? <i class="fa-solid fa-plus faq-icon"></i></div>
@@ -1015,11 +1185,11 @@
   <div class="container">
     <div class="cta-content" data-aos="zoom-in">
       <h2 class="cta-title">
-        Menos fricción, más entregables<br>
-        <span class="grad-text">desde el 6 de Mayo</span>
+        Cuatro sesiones para publicar con criterio<br>
+        <span class="grad-text">inicio 6 de mayo</span>
       </h2>
       <p class="cta-sub">
-        11 días. 4 sesiones. Una página viva para tu negocio o servicio. Cupos acotados — si venís en bloque desde equipo o PYME, escribinos por WhatsApp.
+        Cuatro encuentros en vivo más la sesión de setup. Una página publicada para tu negocio o servicio. Cupos limitados — si vienen varias personas del mismo equipo o PYME, escríbenos por WhatsApp.
       </p>
       <div class="cta-actions">
         <a href="#pricing" class="btn-primary">
@@ -1037,6 +1207,7 @@
 <footer>
   <div class="footer-logo">🤖 Taller AI 2026</div>
   <div class="footer-links">
+    <a href="#agentic">Enfoque</a>
     <a href="#sessions">Programa</a>
     <a href="#tools">Stack</a>
     <a href="#pricing">Precios</a>
@@ -1072,7 +1243,7 @@ AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
 
 // Countdown
 (function() {
-  const target = new Date('2026-05-06T19:00:00-05:00').getTime();
+  const target = new Date('2026-05-07T19:00:00-05:00').getTime();
   function update() {
     const diff = target - Date.now();
     if (diff <= 0) {
@@ -1137,7 +1308,7 @@ AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
 // Navbar scroll
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').style.background =
-    window.scrollY > 50 ? 'rgba(5,8,20,0.97)' : 'rgba(5,8,20,0.8)';
+    window.scrollY > 50 ? 'rgba(3,7,18,0.96)' : 'rgba(3,7,18,0.72)';
 }, { passive: true });
 </script>
 </body>
