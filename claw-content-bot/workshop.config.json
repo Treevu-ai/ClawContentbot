@@ -1,0 +1,111 @@
+{
+  "slug": "taller-mayo-2026",
+  "title": "Taller: Construye tu Startup con AI Agéntica",
+  "tagline": "Construye tu startup sin código en 4 sesiones en vivo:",
+  "welcome_session_lines": [
+    "📅 Mayo 6 - Setup Day (opcional)",
+    "📅 Mayo 7 - Sesión 1: Tu Mapa de Negocio",
+    "📅 Mayo 9 - Sesión 2: Valida tu Idea con AI",
+    "📅 Mayo 14 - Sesión 3: Diseña tu MVP con Stitch",
+    "📅 Mayo 16 - Sesión 4: Construye tu Landing"
+  ],
+  "schedule_footer": {
+    "time_range": "7:00 PM - 9:00 PM",
+    "timezone_label": "Lima",
+    "platform": "Zoom"
+  },
+  "stack_line": "Claude + Google Stitch + Cursor + GitHub",
+  "info": {
+    "intro_heading": "¿Qué vas a aprender?",
+    "sessions": [
+      {
+        "title_line": "*Sesión 1:* Tu Mapa de Negocio",
+        "detail": "→ Business Model Canvas + Claude"
+      },
+      {
+        "title_line": "*Sesión 2:* Valida tu Idea con AI",
+        "detail": "→ Research con datos reales"
+      },
+      {
+        "title_line": "*Sesión 3:* Diseña tu MVP",
+        "detail": "→ Text-to-UI con Google Stitch"
+      },
+      {
+        "title_line": "*Sesión 4:* Construye tu Landing",
+        "detail": "→ Deploy con Cursor + GitHub Pages"
+      }
+    ],
+    "stack_heading": "Stack que usarás:",
+    "stack_bullets": [
+      "• Claude (AI) — Research y prompts",
+      "• Google Stitch — Text-to-UI",
+      "• Cursor — Deploy tu landing",
+      "• Canvas + GitHub Pages"
+    ],
+    "outcomes_heading": "Al terminar tendrás:",
+    "outcomes": [
+      "✅ Tu Business Model Canvas",
+      "✅ Tu idea validada",
+      "✅ UIs en Stitch",
+      "✅ Landing page funcionando"
+    ],
+    "footer_time": "7:00 PM - 9:00 PM",
+    "footer_tz": "Lima",
+    "footer_platform_note": "Zoom (enlace post-inscripción)"
+  },
+  "tiers": [
+    {
+      "id": "esencial",
+      "label": "🌱 Esencial",
+      "price": "$97 USD",
+      "price_amount": 97,
+      "bullets": [
+        "4 sesiones en vivo",
+        "Workbook + Templates",
+        "Acceso comunidad 1 mes",
+        "Grabaciones 7 días",
+        "Certificado digital"
+      ]
+    },
+    {
+      "id": "full",
+      "label": "🚀 Full Access",
+      "price": "$197 USD",
+      "price_amount": 197,
+      "bullets": [
+        "Todo lo de Esencial +",
+        "Chat con Ricardo 7 días",
+        "Prompt Library (20+ templates)",
+        "Dashboard en Notion"
+      ]
+    },
+    {
+      "id": "intensivo",
+      "label": "💎 Intensivo",
+      "price": "$497 USD",
+      "price_amount": 497,
+      "bullets": [
+        "Todo lo de Full Access +",
+        "3 sesiones 1:1 con Ricardo",
+        "Revisión de tu MVP",
+        "Monthly Community Call 6 meses"
+      ]
+    }
+  ],
+  "defaults": {
+    "whatsapp_display": "903176598",
+    "whatsapp_e164_pe": "51903176598"
+  },
+  "landing_asset": {
+    "relative_path_from_workspace_root": "taller-mayo-2026/landing/index.html",
+    "note": "Tras cambiar precios o fechas aquí, ejecutar npm run verify:assets desde claw-content-bot y actualizar la landing manualmente o con tu flujo de publicación."
+  },
+  "slides_asset": {
+    "relative_path_from_workspace_root": "taller-mayo-2026/slides/INDICE.md",
+    "must_contain_substrings": ["Mayo 6", "Claude", "97", "197", "497"]
+  },
+  "landing_checks": {
+    "must_contain_session_dates": true,
+    "extra_substrings": ["GMT-5", "Zoom"]
+  }
+}

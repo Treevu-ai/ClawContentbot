@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Mayo 2026 — Slides</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan: #00f5ff;
+      --purple: #a855f7;
+      --orange: #ff6b35;
+      --pink: #f472b6;
+      --bg: #050814;
+      --bg2: #080d1a;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --font: 'Inter', sans-serif;
+      --font2: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .slideshow {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem;
+      background: var(--bg);
+    }
+    .slide.active { display: flex; }
+
+    /* Background */
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,0.15) 0%, transparent 60%),
+        var(--bg);
+      z-index: 0;
+    }
+    .slide > * { position: relative; z-index: 1; }
+
+    /* Grid background */
+    .slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+    }
+
+    .slide-number {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: var(--font2);
+    }
+
+    /* Typography */
+    .main-title {
+      font-family: var(--font2);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .grad-text {
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--muted);
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    /* Slide: Portada */
+    .cover .logo {
+      font-family: var(--font2);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
+    }
+    .cover .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(0,245,255,0.08);
+      border: 1px solid rgba(0,245,255,0.25);
+      border-radius: 100px;
+      font-size: 0.9rem;
+      color: var(--cyan);
+      margin-top: 2rem;
+    }
+    .cover .cta-small {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border: none;
+      border-radius: 100px;
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* Slide: Sesiones */
+    .sessions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 700px;
+      text-align: left;
+    }
+    .session-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+    .session-item:hover {
+      border-color: rgba(168,85,247,0.4);
+      background: rgba(168,85,247,0.05);
+    }
+    .session-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font2);
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .sn-0 { background: rgba(148,163,184,0.15); color: var(--muted); }
+    .sn-1 { background: rgba(0,245,255,0.15); color: var(--cyan); }
+    .sn-2 { background: rgba(168,85,247,0.15); color: var(--purple); }
+    .sn-3 { background: rgba(255,107,53,0.15); color: var(--orange); }
+    .sn-4 { background: rgba(244,114,182,0.15); color: var(--pink); }
+    .session-info { flex: 1; }
+    .session-name {
+      font-family: var(--font2);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    .session-desc { font-size: 0.85rem; color: var(--muted); }
+
+    /* Slide: Tools */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 700px;
+    }
+    .tool-card {
+      padding: 1.75rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .tool-card:hover {
+      border-color: rgba(168,85,247,0.4);
+      transform: translateY(-4px);
+    }
+    .tool-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+    .tool-name {
+      font-family: var(--font2);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+    .tool-desc { font-size: 0.8rem; color: var(--muted); }
+
+    /* Slide: Pricing */
+    .pricing-mini {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 800px;
+    }
+    .price-card {
+      padding: 2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      text-align: center;
+    }
+    .price-card.featured {
+      background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(0,245,255,0.08));
+      border-color: rgba(168,85,247,0.4);
+    }
+    .price-tier {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    .price-value {
+      font-family: var(--font2);
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .price-card.featured .price-value {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .price-card.hot .price-value {
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .price-features {
+      list-style: none;
+      margin-top: 1rem;
+      text-align: left;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .price-features li {
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .price-features li::before {
+      content: '✓';
+      color: var(--cyan);
+      font-size: 0.75rem;
+    }
+
+    /* Slide: Schedule */
+    .schedule-visual {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font2);
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .schedule-day {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+    .day-active {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: #000;
+    }
+    .day-inactive {
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+    }
+    .schedule-time {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .schedule-time span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    /* Slide: GEO */
+    .geo-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 650px;
+      width: 100%;
+    }
+    .geo-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(0,245,255,0.05);
+      border: 1px solid rgba(0,245,255,0.15);
+      border-radius: 14px;
+    }
+    .geo-num {
+      font-family: var(--font2);
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      flex-shrink: 0;
+    }
+    .geo-text { font-size: 0.95rem; line-height: 1.5; }
+    .geo-text strong { color: var(--text); }
+
+    /* Slide: Big stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 900px;
+    }
+    .stat-box {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+    }
+    .stat-num {
+      font-family: var(--font2);
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); }
+
+    /* Slide: CTA */
+    .cta-final {
+      text-align: center;
+    }
+    .cta-final .main-title { margin-bottom: 1rem; }
+    .cta-final .subtitle { margin-bottom: 3rem; }
+    .cta-final .btn-huge {
+      padding: 1.25rem 3rem;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border: none;
+      border-radius: 100px;
+      color: #000;
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 40px rgba(168,85,247,0.4);
+      transition: all 0.3s;
+    }
+    .cta-final .btn-huge:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(168,85,247,0.6);
+    }
+    .cta-final .wa-tag {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .cta-final .wa-tag span { color: var(--cyan); font-weight: 600; }
+
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
+      transition: width 0.4s ease;
+      z-index: 100;
+    }
+
+    /* Nav arrows */
+    .nav-arrows {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.75rem;
+      z-index: 100;
+    }
+    .nav-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .nav-arrow:hover {
+      border-color: var(--purple);
+      background: rgba(168,85,247,0.1);
+    }
+
+    /* Logo top */
+    .top-logo {
+      position: fixed;
+      top: 1.5rem;
+      left: 2rem;
+      font-family: var(--font2);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--purple);
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-logo">🤖 Taller AI 2026</div>
+  <div class="progress-bar" id="progress"></div>
+
+  <div class="slideshow" id="slideshow">
+
+    <!-- SLIDE 1: Portada -->
+    <div class="slide cover active" data-slide="1">
+      <div class="logo">MAYO 2026 · TALLER EN VIVO</div>
+      <h1 class="main-title">
+        Construye tu Startup<br>
+        <span class="grad-text">sin escribir código</span>
+      </h1>
+      <p class="subtitle">De idea a landing live en 4 sesiones en vivo.<br>Aprende AI agéntica con Claude, Stitch, Cursor y GitHub.</p>
+      <div class="date-badge">
+        <span>📅</span> 6–16 Mayo 2026 · Mié + Vie · 7–9 PM Lima
+      </div>
+      <button class="cta-small" onclick="nextSlide()">Ver el programa →</button>
+      <div class="slide-number">01 / 11</div>
+    </div>
+
+    <!-- SLIDE 2: Schedule visual -->
+    <div class="slide" data-slide="2">
+      <h2 class="main-title" style="margin-bottom:0.5rem"><span class="grad-text">Miércoles y Viernes</span></h2>
+      <p class="subtitle" style="margin-bottom:2rem">7–9 PM Lima · Online en vivo · Grabadas</p>
+      <div class="schedule-visual">
+        <span style="color:var(--muted);font-size:0.85rem">Mayo 2026:</span>
+        <span class="schedule-day day-inactive">Lu</span>
+        <span class="schedule-day day-inactive">Ma</span>
+        <span class="schedule-day day-active">Mi 6</span>
+        <span class="schedule-day day-inactive">Ju</span>
+        <span class="schedule-day day-inactive">Vi 9</span>
+        <span class="schedule-day day-inactive">Sá</span>
+        <span class="schedule-day day-inactive">Do</span>
+      </div>
+      <div class="schedule-time">7:00 <span>— 9:00 PM</span></div>
+      <p class="subtitle">+ Sesión 0 (Setup) el 6 de Mayo al mediodía</p>
+      <div class="slide-number">02 / 11</div>
+    </div>
+
+    <!-- SLIDE 3: No necesitas saber programar -->
+    <div class="slide" data-slide="3">
+      <h2 class="main-title">No necesitas<br><span class="grad-text">saber programar</span></h2>
+      <p class="subtitle" style="margin-bottom:3rem">Tu único requisito: tener una idea de negocio.<br>Todo lo demás lo hace la AI por ti.</p>
+      <div class="sessions-list" style="max-width:500px">
+        <div class="session-item">
+          <div class="session-num sn-1">✓</div>
+          <div class="session-info">
+            <div class="session-name">Escribís en lenguaje natural</div>
+            <div class="session-desc">Le decís a Claude qué querés y genera el código</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-2">✓</div>
+          <div class="session-info">
+            <div class="session-name">Stitch diseña tu UI</div>
+            <div class="session-desc">Descripción → Diseño profesional en minutos</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-3">✓</div>
+          <div class="session-info">
+            <div class="session-name">Cursor completa el código</div>
+            <div class="session-desc">Autocompletado inteligente, sin escribir caracteres</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-number">03 / 11</div>
+    </div>
+
+    <!-- SLIDE 4: Las 5 sesiones -->
+    <div class="slide" data-slide="4">
+      <h2 class="main-title" style="font-size:clamp(2rem,5vw,3.5rem)">Tu <span class="grad-text">roadmap</span> en 11 días</h2>
+      <p class="subtitle" style="margin-bottom:2.5rem">5 sesiones · Primer commit el Día 1</p>
+      <div class="sessions-list">
+        <div class="session-item">
+          <div class="session-num sn-0"><i class="fa-solid fa-rocket"></i></div>
+          <div class="session-info">
+            <div class="session-name">Sesión 0 — Setup (Mayo 6)</div>
+            <div class="session-desc">Configurá Claude, Cursor, GitHub y Stitch. Tu primer commit antes de terminar.</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-1">01</div>
+          <div class="session-info">
+            <div class="session-name">Business Canvas con AI</div>
+            <div class="session-desc">Tu cliente ideal, propuesta de valor y canales definidos con Claude como co-fundador.</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-2">02</div>
+          <div class="session-info">
+            <div class="session-name">Valida tu Idea</div>
+            <div class="session-desc">Entrevistas sintéticas, análisis de mercado y validación de hipótesis clave.</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-3">03</div>
+          <div class="session-info">
+            <div class="session-name">Diseña tu MVP</div>
+            <div class="session-desc">De wireframe a UI con Google Stitch. Componentes y copy generados por AI.</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-4">04</div>
+          <div class="session-info">
+            <div class="session-name">Build & Launch</div>
+            <div class="session-desc">Deploy de tu landing en vivo. Formulario, analytics y listo para recibir tráfico.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-number">04 / 11</div>
+    </div>
+
+    <!-- SLIDE 5: Stack -->
+    <div class="slide" data-slide="5">
+      <h2 class="main-title">El <span class="grad-text">stack</span> del taller</h2>
+      <p class="subtitle" style="margin-bottom:2.5rem">Todas herramientas gratuitas o con trial.<br>Sin suscripciones obligatorias.</p>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <span class="tool-icon">🤖</span>
+          <div class="tool-name">Claude</div>
+          <div class="tool-desc">Tu co-fundador AI. Estrategia, copy, código y análisis en lenguaje natural.</div>
+        </div>
+        <div class="tool-card">
+          <span class="tool-icon">🎨</span>
+          <div class="tool-name">Google Stitch</div>
+          <div class="tool-desc">Diseño de interfaces con AI. De texto a UI profesional en minutos.</div>
+        </div>
+        <div class="tool-card">
+          <span class="tool-icon">⚡</span>
+          <div class="tool-name">Cursor</div>
+          <div class="tool-desc">IDE potenciado por AI. Escribe código real sin saber programar.</div>
+        </div>
+        <div class="tool-card">
+          <span class="tool-icon">🐙</span>
+          <div class="tool-name">GitHub Pages</div>
+          <div class="tool-desc">Publicá tu landing gratis. Versioná tu startup desde día 1.</div>
+        </div>
+      </div>
+      <div class="slide-number">05 / 11</div>
+    </div>
+
+    <!-- SLIDE 6: Stats -->
+    <div class="slide" data-slide="6">
+      <h2 class="main-title" style="margin-bottom:2.5rem">En 11 días <span class="grad-text"> Vásquez a terminar</span></h2>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Sesiones en vivo</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">8h</div>
+          <div class="stat-label">De formación</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Landing live</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Líneas de código manual</div>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top:2rem">Solo necesitas una idea. Te entregamos el resto.</p>
+      <div class="slide-number">06 / 11</div>
+    </div>
+
+    <!-- SLIDE 7: GEO -->
+    <div class="slide" data-slide="7">
+      <h2 class="main-title"><span class="grad-text">GEO</span>: Sé citado por la AI</h2>
+      <p class="subtitle" style="margin-bottom:2.5rem">No solo posicionarte en Google.<br>Sé fuente de referencia para ChatGPT, Perplexity y Google AI.</p>
+      <div class="geo-points">
+        <div class="geo-point">
+          <div class="geo-num">01</div>
+          <div class="geo-text"><strong>Contenido que la AI cita.</strong> Listas, comparativas y datos verificables. Formatos que los motores generativos prefieren.</div>
+        </div>
+        <div class="geo-point">
+          <div class="geo-num">02</div>
+          <div class="geo-text"><strong>Estructura legible por máquinas.</strong> Headers jerárquicos, Markdown y datos verificables. Compresible para cualquier LLM.</div>
+        </div>
+        <div class="geo-point">
+          <div class="geo-num">03</div>
+          <div class="geo-text"><strong>Autoridad externa.</strong> Reseñas, menciones en terceros y presencia en YouTube y Reddit. La AI cita fuentes reconocidas.</div>
+        </div>
+      </div>
+      <div class="slide-number">07 / 11</div>
+    </div>
+
+    <!-- SLIDE 8: ¿Qué vas a entregar? -->
+    <div class="slide" data-slide="8">
+      <h2 class="main-title" style="font-size:clamp(2rem,5vw,3.5rem)">Tu <span class="grad-text">entregable</span> final</h2>
+      <p class="subtitle" style="margin-bottom:2.5rem">Al terminar el taller tenés:</p>
+      <div class="sessions-list" style="max-width:600px">
+        <div class="session-item">
+          <div class="session-num sn-1">✓</div>
+          <div class="session-info">
+            <div class="session-name">Landing live y funcionando</div>
+            <div class="session-desc">Con formulario de contacto, analytics y lista de espera</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-2">✓</div>
+          <div class="session-info">
+            <div class="session-name">Business Canvas validado</div>
+            <div class="session-desc">Con tu cliente ideal, propuesta de valor y canales definidos</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-3">✓</div>
+          <div class="session-info">
+            <div class="session-name">Roadmap de 90 días</div>
+            <div class="session-desc">Tu plan de crecimiento para después del taller</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-4">✓</div>
+          <div class="session-info">
+            <div class="session-name">Acceso a la comunidad</div>
+            <div class="session-desc">Grupo privado con otros founders y soporte por WhatsApp</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-number">08 / 11</div>
+    </div>
+
+    <!-- SLIDE 9: Precios -->
+    <div class="slide" data-slide="9">
+      <h2 class="main-title">Elegí tu <span class="grad-text">plan</span></h2>
+      <p class="subtitle" style="margin-bottom:2.5rem">Plazas limitadas · Precio sube conforme se llenan</p>
+      <div class="pricing-mini">
+        <div class="price-card">
+          <div class="price-tier">Esencial</div>
+          <div class="price-value">US$97</div>
+          <ul class="price-features">
+            <li>4 sesiones grabadas</li>
+            <li>Acceso grupo privado</li>
+            <li>Templates y prompts</li>
+            <li>Soporte WhatsApp</li>
+          </ul>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tier">Full Access</div>
+          <div class="price-value">US$197</div>
+          <ul class="price-features">
+            <li>Todo lo del Esencial</li>
+            <li>Revisión Business Canvas</li>
+            <li>Feedback en tu MVP</li>
+            <li>Sesión Q&A extra</li>
+          </ul>
+        </div>
+        <div class="price-card hot">
+          <div class="price-tier">Intensivo</div>
+          <div class="price-value">US$497</div>
+          <ul class="price-features">
+            <li>Todo lo de Full Access</li>
+            <li>2 mentorías 1:1 (60 min)</li>
+            <li>Plan de 90 días</li>
+            <li>Soporte prioritario 30d</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:1.5rem;color:var(--muted);font-size:0.85rem">💳 Yape · Plin · BCP · PayPal disponible</p>
+      <div class="slide-number">09 / 11</div>
+    </div>
+
+    <!-- SLIDE 10:Quién es esto -->
+    <div class="slide" data-slide="10">
+      <h2 class="main-title">Para quién es<br><span class="grad-text">este taller</span></h2>
+      <div class="sessions-list" style="max-width:600px">
+        <div class="session-item">
+          <div class="session-num sn-1">✓</div>
+          <div class="session-info">
+            <div class="session-name">Emprendedores con idea</div>
+            <div class="session-desc">Tenés una idea de negocio pero no sabés cómo empezar a construirla.</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-2">✓</div>
+          <div class="session-info">
+            <div class="session-name">Profesionales en transición</div>
+            <div class="session-desc">Querés lanzar un proyecto paralelo sin dejar tu trabajo actual.</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-3">✓</div>
+          <div class="session-info">
+            <div class="session-name">PYMEs que quieren digitalizarse</div>
+            <div class="session-desc">Tenés un negocio y querés entender cómo la AI puede acelerarlo.</div>
+          </div>
+        </div>
+        <div class="session-item">
+          <div class="session-num sn-4">✓</div>
+          <div class="session-info">
+            <div class="session-name">No es para vos si...</div>
+            <div class="session-desc">Ya tenés una startup funcionando con equipo técnico completo.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-number">10 / 11</div>
+    </div>
+
+    <!-- SLIDE 11: CTA Final -->
+    <div class="slide" data-slide="11">
+      <div class="cta-final">
+        <h2 class="main-title">Tu startup empieza<br><span class="grad-text">el 6 de Mayo</span></h2>
+        <p class="subtitle">11 días. 4 sesiones. Una landing live.<br>Las plazas se llenan rápido.</p>
+        <a href="https://wa.me/51903176598?text=Hola,%20quiero%20inscribirme%20al%20Taller%20Mayo%202026" target="_blank" class="btn-huge">
+          <i class="fa-solid fa-rocket"></i> Quiero mi lugar ahora
+        </a>
+        <div class="wa-tag">O escríbenos directo: <span>+51 903 176 598</span></div>
+        <div style="margin-top:2rem;padding:1rem 2rem;background:rgba(0,245,255,0.05);border:1px solid rgba(0,245,255,0.15);border-radius:12px;font-size:0.85rem;color:var(--muted)">
+          💰Transferencia BCP: 570-05165126-0-53 · Yape · Plin · PayPal
+        </div>
+      </div>
+      <div class="slide-number">11 / 11</div>
+    </div>
+
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-arrows">
+    <button class="nav-arrow" onclick="prevSlide()">←</button>
+    <button class="nav-arrow" onclick="nextSlide()">→</button>
+  </div>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script>
+    let current = 1;
+    const total = 11;
+
+    function showSlide(n) {
+      if (n < 1) n = 1;
+      if (n > total) n = total;
+      current = n;
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      document.querySelector(`[data-slide="${n}"]`).classList.add('active');
+      document.getElementById('progress').style.width = ((n / total) * 100) + '%';
+    }
+
+    function nextSlide() { showSlide(current + 1); }
+    function prevSlide() { showSlide(current - 1); }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+    });
+
+    // Init
+    showSlide(1);
+  </script>
+</body>
+</html>
