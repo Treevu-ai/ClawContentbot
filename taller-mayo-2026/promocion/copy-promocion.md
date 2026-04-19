@@ -122,7 +122,7 @@ Porque estoy testeando el formato. El próximo cohort probablemente sea más car
 WhatsApp: 903 176 598
 O respondé este mensaje.
 
-#TallerAI #StartupSinCódigo
+#TallerAI #PYME #Freelance #IA
 ```
 
 ---
@@ -138,7 +138,7 @@ Les cuento qué vamos a hacer en cada sesión para que vean que no es teoría ab
 Setup técnico. Conectamos Claude, instalamos Cursor, creamos tu cuenta GitHub, vemos Google Stitch. Al terminar, tenés el entorno listo y tu primer commit hecho.
 
 **SESIÓN 1 (7 Mayo, 7 PM)**
-Validación de idea. Usamos Claude como co-fundador. Definimos tu cliente ideal, propuesta de valor, y canales. Salís con un Business Canvas validado.
+Validación y priorización. Con Claude ordenamos oferta, cliente ideal y canales. Salís con un mapa del negocio claro — para saber qué destrabar primero.
 
 **SESIÓN 2 (9 Mayo, 7 PM)**
 Entrevistas sintéticas. La AI te ayuda a "entrevistar" a tu cliente ideal sin hablar con personas reales todavía. Aprendés a validar hipótesis rápido.
@@ -174,7 +174,7 @@ WhatsApp es más íntimo, menos formal. Mensajes más cortos y directos.
 ```
 👋 Hey, tengo noticias.
 
-Lanzo un taller en mayo: **construí tu startup sin código**.
+Lanzo un taller en mayo: **destrabá cuellos de botella con IA — sin escribir código**.
 
 4 sesiones en vivo. Miércoles y viernes 7-9 PM.
 De la idea a una landing funcionando en 11 días.
@@ -239,33 +239,29 @@ LinkedIn favorece posts con "hooks" fuertes, listas, y historias personales.
 ### POST #1: EL PROBLEMA (Día 2)
 
 ```
-**Tenés una idea de negocio y no sabés por dónde empezar.**
+**Tu PYME o tu práctica profesional pierde tiempo en idas y vueltas con herramientas y terceros.**
 
 Te pasa esto:
-• Buscás "cómo crear una startup" y hay 10 millones de resultados
-• Intentás aprender a programar y al mes seguís en el tutorial #3
-• Cotizás con agencias y te piden $5k por una landing básica
-• Decidís hacerlo vos solo y nunca arrancás
+• La web o la landing “está en proceso” y cada cambio chico es un ticket eterno
+• Cotizás con agencias y el presupuesto no cierra para algo que necesitás ya
+• Tenés Claude/Cursor en el título pero nadie en el equipo cierra el deploy
+• Decidís hacerlo vos y te trabás en el tutorial #3
 
-Al final, la idea se queda en el cajón.
+Al final, el cuello de botella no es la idea: es **operación + tecnología sin dueño**.
 
-Yo pasé por eso.
+Yo también lo vi en consultorías y equipos chicos.
 
-Y descubrí que no necesitás saber código para construir.
+La vuelta fue usar IA agéntica para **ejecutar**, no solo para charlar: misma semana, URL viva.
 
-Ahora uso herramientas AI que hacen el trabajo técnico por mí.
-
-De idea a landing en 11 días.
-
-Si querés saber cómo, el 6 de mayo arranca mi taller:
-"Construí tu startup sin código"
+Si querés ver el método, el 6 de mayo arranca mi taller:
+"Destrabá cuellos de botella con IA — sin código"
 
 Miércoles y viernes, 7-9 PM (Lima).
-4 sesiones en vivo. Sin saber programar.
+4 sesiones en vivo. Perfil negocio / PYME / freelance — no hace falta ser dev.
 
 Info en el primer comentario 👇
 
-#Startups #Emprendimiento #AI #NoCode
+#PYME #TransformaciónDigital #IA #NoCode
 ```
 
 ---
@@ -297,7 +293,7 @@ El taller de mayo te enseña exactamente este workflow:
 **SEMANA 3:** Deploy final y lanzamiento
 
 Herramientas que usamos:
-🤖 Claude (tu co-fundador AI)
+🤖 Claude (estrategia y borradores guiados)
 🎨 Google Stitch (diseño sin saber diseñar)
 ⚡ Cursor (código sin escribir código)
 🐙 GitHub Pages (hosting gratis)
@@ -316,7 +312,7 @@ Link en comentarios 👇
 ### POST #3: OFERTA DIRECTA (Día 10)
 
 ```
-**TALLER: Construí tu startup sin código (Mayo 2026)**
+**TALLER: Destrabá cuellos de botella con IA — sin código (Mayo 2026)**
 
 📅 6 al 16 de Mayo
 🕖 Mié y Vie, 7–9 PM (Lima GMT-5)
@@ -342,7 +338,7 @@ Máximo 20 participantes.
 ¿Preguntas? Escríbeme por WhatsApp: 903 176 598
 O comentá acá.
 
-#TallerAI #Startup #EmprendimientoLatam
+#TallerAI #PYME #Freelance #TransformaciónDigital
 ```
 
 ---
@@ -375,7 +371,7 @@ Inscripción directa: WhatsApp 903 176 598
 
 P.D.: Si después de la primera sesión no te gusta, te devuelvo el 100%. Sin preguntas.
 
-#TallerAI #Startups #Latam
+#TallerAI #Operaciones #Latam
 ```
 
 ---
@@ -384,7 +380,7 @@ P.D.: Si después de la primera sesión no te gusta, te devuelvo el 100%. Sin pr
 
 Para enviar a lista de contactos existente.
 
-**Asunto:** Taller Mayo 2026: Tu startup sin código (quedan 13 plazas)
+**Asunto:** Taller Mayo 2026: IA para destrabar tu operación — sin código (quedan 13 plazas)
 
 ---
 
@@ -410,7 +406,7 @@ Miércoles y viernes, 7–9 PM (Lima GMT-5).
 Online, en vivo, con grabaciones.
 
 **LAS HERRAMIENTAS**
-• Claude (tu co-fundador AI)
+• Claude (estrategia y borradores guiados)
 • Google Stitch (diseño sin saber diseñar)
 • Cursor (código sin escribir código)
 • GitHub Pages (hosting gratis)
