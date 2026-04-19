@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taller Mayo 2026 — IA agéntica para quitar cuellos de botella · Lima</title>
-  <meta name="description" content="Cuatro sesiones en vivo (más setup): IA agéntica para equipos y PYMEs que pierden tiempo entre herramientas y terceros. Identificas el cuello de botella y publicas tu web con Claude, Stitch, Cursor y GitHub. Sin código. Mayo 2026, Lima." />
+  <title>Taller Mayo 2026 · Publica más rápido con IA agéntica · Lima</title>
+  <meta name="description" content="Cuatro sesiones en vivo en Perú (más configuración inicial): landing en producción con Claude, Stitch, Cursor y GitHub. Detecta el cuello de botella técnico sin escribir código. Mayo 2026." />
   <link rel="canonical" href="https://treevu-ai.github.io/ClawContentbot/" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
       --border:  rgba(255,255,255,0.07);
       --text:    #f1f5f9;
       --muted:   #94a3b8;
-      --font:    'Plus Jakarta Sans', system-ui, sans-serif;
-      --font2:   'Syne', system-ui, sans-serif;
+      --font:    'Manrope', system-ui, sans-serif;
+      --font2:   'Sora', system-ui, sans-serif;
       --radius:  16px;
       --shadow:  0 24px 80px rgba(0,0,0,0.45);
     }
@@ -95,7 +95,7 @@
     .nav-links a:not(.nav-cta):hover { color: var(--text); }
     .nav-logo {
       font-family: var(--font2);
-      font-size: 1.1rem; font-weight: 700;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em;
       background: linear-gradient(135deg, var(--cyan), var(--purple));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
@@ -678,6 +678,198 @@
     }
     .trust-demo-link:hover { text-decoration: underline; }
 
+    /* ── HERO ALTO IMPACTO (marketing + tech 2026) ── */
+    #hero.hero-v2 {
+      padding-bottom: 5rem;
+      isolation: isolate;
+    }
+    #hero.hero-v2 .particles { opacity: 0.45; }
+    .hero-mesh {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      opacity: 0.55;
+      background:
+        conic-gradient(from 210deg at 65% 35%, rgba(129,140,248,0.09), transparent 42%),
+        conic-gradient(from 120deg at 25% 70%, rgba(45,212,191,0.07), transparent 45%);
+      mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, #000 22%, transparent 72%);
+    }
+    .hero-kicker-row {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      justify-content: flex-start;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .hero-pill--accent {
+      background: rgba(45,212,191,0.1);
+      border-color: rgba(45,212,191,0.28);
+      color: #5eead4;
+    }
+    .hero-eyebrow {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--purple);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.65rem;
+      text-transform: uppercase;
+    }
+    #hero.hero-v2 .hero-title.hero-title--impact {
+      font-size: clamp(2.35rem, 5.8vw, 4.15rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.25rem;
+    }
+    .hero-title-line { display: block; color: var(--text); }
+    .hero-title-line--grad {
+      padding-top: 0.12em;
+      background: linear-gradient(115deg, #5eead4 0%, #a5b4fc 42%, #c4b5fd 88%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-lead {
+      font-size: clamp(1.05rem, 2.1vw, 1.2rem);
+      line-height: 1.72;
+      color: var(--muted);
+      max-width: 38rem;
+      margin-bottom: 1.35rem;
+    }
+    .hero-lead strong { color: var(--text); font-weight: 700; }
+    .hero-bullets {
+      list-style: none;
+      margin: 0 0 1.75rem;
+      padding: 0;
+      display: flex; flex-direction: column;
+      gap: 0.55rem;
+      max-width: 38rem;
+    }
+    .hero-bullets li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.91rem; color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .hero-bullets li i {
+      margin-top: 0.2rem;
+      color: var(--cyan);
+      font-size: 0.75rem;
+      opacity: 0.95;
+    }
+    .hero-stack-row {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 0.65rem 1rem;
+      margin-top: 1.35rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+    .hero-stack-logos {
+      font-family: var(--font2);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-weight: 700;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+    .hero-showcase { position: relative; z-index: 1; }
+    .hero-browser {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(3,7,18,0.85);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.55), 0 0 0 1px rgba(129,140,248,0.12);
+    }
+    .hero-browser-chrome {
+      display: flex; align-items: center; gap: 0.45rem;
+      padding: 0.65rem 1rem;
+      background: rgba(15,23,42,0.95);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .hero-browser-chrome span.dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #475569;
+    }
+    .hero-browser-chrome span.dot:nth-child(1) { background: #fb7185; }
+    .hero-browser-chrome span.dot:nth-child(2) { background: #fbbf24; }
+    .hero-browser-chrome span.dot:nth-child(3) { background: #34d399; }
+    .hero-browser-url {
+      margin-left: auto;
+      font-family: ui-monospace, monospace;
+      font-size: 0.65rem;
+      color: #64748b;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .hero-browser-body {
+      padding: 1.75rem 1.5rem 2rem;
+      text-align: center;
+      background: linear-gradient(165deg, rgba(15,23,42,0.6) 0%, rgba(3,7,18,0.95) 100%);
+    }
+    .hero-big-num {
+      font-family: var(--font2);
+      font-size: 4.25rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.35rem;
+    }
+    .hero-browser-label {
+      font-size: 0.95rem; font-weight: 700; color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .hero-browser-sub {
+      font-size: 0.8rem; color: var(--muted); line-height: 1.45;
+      margin-bottom: 1.35rem;
+    }
+    .hero-browser-meta {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      text-align: left;
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .hero-browser-meta strong {
+      display: block; color: var(--text); font-size: 0.82rem; margin-bottom: 0.15rem;
+    }
+    .hero-browser-foot {
+      margin-top: 1.15rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.74rem;
+      color: #94a3b8;
+      line-height: 1.55;
+      text-align: left;
+    }
+    #hero.hero-v2 .countdown-wrap-secondary {
+      margin-top: 2rem;
+      align-items: flex-start;
+    }
+    @media (min-width: 960px) {
+      #hero.hero-v2 .countdown-wrap-secondary { align-items: flex-start; }
+    }
+
     @media (max-width: 640px) {
       nav { padding: 0.75rem 1rem; }
       .nav-links { gap: 0.65rem; font-size: 0.82rem; }
@@ -688,6 +880,8 @@
       .hero-layout { text-align: center; }
       .hero-main .hero-actions { justify-content: center; }
       .hero-main .hero-tagline-wrap { justify-content: center; }
+      #hero.hero-v2 .hero-kicker-row { justify-content: center; }
+      #hero.hero-v2 .countdown-wrap-secondary { align-items: center; }
       .hero-sub { margin-left: auto; margin-right: auto; }
       .pi-sep { display: none; }
     }
@@ -711,7 +905,8 @@
 </nav>
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" class="hero-v2">
+  <div class="hero-mesh" aria-hidden="true"></div>
   <div class="hero-bg"></div>
   <div class="grid-overlay"></div>
   <div class="orb orb-1"></div>
@@ -722,44 +917,45 @@
   <div class="hero-content">
     <div class="hero-layout">
       <div class="hero-main">
-        <div class="hero-tagline-wrap">
-          <div class="hero-tagline">
-            <i class="fa-solid fa-location-dot"></i> Mayo 6 al 16, 2026 · Online en vivo · Lima (GMT-5)
-          </div>
+        <div class="hero-kicker-row">
+          <span class="hero-pill hero-pill--accent"><i class="fa-solid fa-bolt" style="font-size:0.65rem"></i> Mayo 2026 · Lima · En vivo</span>
+          <span class="hero-pill">Cohorte máx. 20 personas</span>
         </div>
 
-        <div class="hero-badge">
-          <span class="dot"></span>
-          IA agéntica · 4 sesiones en vivo + Sesión 0 (setup)
-        </div>
+        <p class="hero-eyebrow">IA agéntica aplicada a tu operación</p>
 
-        <div class="hero-geo">
-          <i class="fa-solid fa-globe"></i>
-          GEO: clientes (y la IA) entienden tu oferta y tu autoridad
-        </div>
-
-        <h1 class="hero-title">
-          IA agéntica para<br>
-          <span class="grad-text">quitar cuellos de botella</span><br>
-          <span style="font-size:0.52em;font-weight:700;color:var(--muted);letter-spacing:-0.02em">sin depender solo de sistemas externos</span>
+        <h1 class="hero-title hero-title--impact">
+          <span class="hero-title-line">Publica más rápido.</span>
+          <span class="hero-title-line hero-title-line--grad">Orquesta IA como equipo digital.</span>
         </h1>
 
-        <p class="hero-sub">
-          Para <strong>equipos pequeños, PYMEs y freelancers</strong> en Perú que necesitan orden y un entregable web real.
-          En <strong>cuatro sesiones en vivo</strong> vas a <strong>ubicar el cuello de botella</strong> y vas a publicar <strong>una página</strong> usando <strong>agentes y asistentes</strong> (Claude, Cursor, GitHub, Stitch) — menos idas y vueltas con “cuando lo vea el área de sistemas”.
+        <p class="hero-lead">
+          Para <strong>equipos y PYMEs en Perú</strong> que pierden semanas entre correos y tickets.
+          En <strong>cuatro sesiones en vivo</strong> detectas el cuello de botella técnico y llevas tu <strong>landing a producción</strong> con Claude, Cursor, GitHub y Stitch — <strong>sin escribir código</strong> a mano.
         </p>
+
+        <ul class="hero-bullets">
+          <li><i class="fa-solid fa-circle-check"></i> Agentic first: del chat al repositorio versionado</li>
+          <li><i class="fa-solid fa-circle-check"></i> Miércoles y viernes 7:00–9:00 p.&nbsp;m. · GMT-5 (Lima)</li>
+          <li><i class="fa-solid fa-circle-check"></i> GEO y mensaje claro para clientes <em>y</em> para motores de IA generativa</li>
+        </ul>
 
         <div class="hero-actions">
           <a href="#pricing" class="btn-primary">
-            <i class="fa-solid fa-bolt"></i> Quiero inscribirme
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Ver planes y montos
           </a>
           <a href="#sessions" class="btn-secondary">
-            <i class="fa-regular fa-calendar"></i> Ver las 4 sesiones
+            <i class="fa-regular fa-calendar"></i> Programa de las 4 sesiones
           </a>
         </div>
 
+        <div class="hero-stack-row">
+          Stack 2026
+          <span class="hero-stack-logos">Claude · Stitch · Cursor · GitHub</span>
+        </div>
+
         <div class="countdown-wrap-secondary">
-          <span>Cuenta regresiva · primera sesión nucleada en horario extendido (7 de mayo, 7:00 p.&nbsp;m.)</span>
+          <span>Inicio del bloque en vivo · 7 de mayo 7:00 p.&nbsp;m.</span>
           <div class="countdown-wrapper">
             <div class="countdown-item">
               <div class="countdown-num" id="cd-days">00</div>
@@ -784,16 +980,25 @@
         </div>
       </div>
 
-      <aside class="hero-panel" aria-label="Formato del taller">
-        <div class="hero-panel-label">Agentic first</div>
-        <div class="hero-session-ring" aria-hidden="true">4</div>
-        <p style="text-align:center;font-size:0.92rem;color:var(--text);font-weight:700;margin-bottom:0.35rem">sesiones nucleares en vivo</p>
-        <p style="text-align:center;font-size:0.81rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.45">Más la <strong style="color:var(--text)">Sesión&nbsp;0</strong> de configuración (6 de mayo, mediodía)</p>
-        <div class="hero-panel-stats">
-          <div><strong>Ventana</strong>6–16 de mayo (calendario)</div>
-          <div><strong>Horario</strong>Mié y vie 7:00–9:00 p.&nbsp;m. Lima</div>
+      <aside class="hero-showcase" aria-label="Resumen del formato">
+        <div class="hero-browser">
+          <div class="hero-browser-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="hero-browser-url">taller.ia · cohorte mayo</span>
+          </div>
+          <div class="hero-browser-body">
+            <div class="hero-big-num">4</div>
+            <div class="hero-browser-label">sesiones nucleares en vivo</div>
+            <p class="hero-browser-sub">más Sesión&nbsp;0 de configuración<br>(6 de mayo · mediodía)</p>
+            <div class="hero-browser-meta">
+              <div><strong>Ventana</strong>6–16 de mayo</div>
+              <div><strong>Ritmo</strong>Mié / Vie · 2 h c/u</div>
+            </div>
+            <p class="hero-browser-foot">
+              Lo que cuenta es la <strong>densidad de cada sesión</strong>: planifica con agentes, ejecuta en el repo, valida con datos y publica en una URL real — no una maqueta eterna en el escritorio.
+            </p>
+          </div>
         </div>
-        <p class="hero-panel-note">Lo que importa no es la cantidad de días en el calendario, sino el <strong>trabajo de cada sesión</strong>: plan con agentes, ejecuta con herramientas, valida y publica.</p>
       </aside>
     </div>
   </div>
