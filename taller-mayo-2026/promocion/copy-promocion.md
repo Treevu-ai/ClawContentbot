@@ -30,11 +30,11 @@ Telegram permite mensajes largos, markdown, y estructura visual. Aprovechamos es
 ### MENSAJE 1: ANUNCIO OFICIAL (Día 0)
 
 ```
-🚀 **TALLER: QUITA CUELLOS DE BOTELLA CON IA — SIN CÓDIGO**
+🚀 **TALLER: DE LA OPORTUNIDAD A LA SOLUCIÓN ORQUESTADA CON IA (TÚ VALIDAS CADA PASO)**
 
-¿Tu equipo o tu negocio pierde tiempo entre herramientas, proveedores y “lo vemos la próxima semana”?
+¿Ves una señal de negocio pero sigues sin ejecutar una solución concreta a tiempo?
 
-En **cuatro sesiones en vivo** (más la sesión de configuración) vas a detectar **dónde se frena el trabajo** y vas a salir con **una página web publicada** usando Claude, Stitch, Cursor y GitHub Pages — sin ser programador.
+En **cuatro sesiones en vivo** (más la sesión de configuración) vas a **ordenar la oportunidad**, **diseñar la solución con agentes de IA** y dar **tu visto bueno en cada paso** (human in the loop). Al cierre llevas **material usable** y una **URL pública** como prueba verificable — con Claude, Stitch, Cursor y GitHub Pages, sin ser programador.
 
 **📅 CUÁNDO**
 6 al 16 de mayo de 2026
