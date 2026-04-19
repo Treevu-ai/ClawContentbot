@@ -1,0 +1,3 @@
+# Pega UNA línea con tu URL pública (sin barra final). Ejemplo:
+# https://tuusuario.github.io/taller-mayo-2026/landing
+URL_PUBLICA=

@@ -1,0 +1,14 @@
+# OpenClaw / IDE local
+.openclaw/
+
+# Notas diarias del agente (local)
+memory/
+
+# Node
+node_modules/
+
+# Variables con secretos (tokens, cuenta bancaria, CCI). Los valores reales van aquí o en Railway — no en `.env.example`.
+.env
+.env.local
+.env.*.local
+**/claw-content-bot/.env
