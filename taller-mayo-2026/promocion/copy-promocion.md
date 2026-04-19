@@ -30,11 +30,11 @@ Telegram permite mensajes largos, markdown, y estructura visual. Aprovechamos es
 ### MENSAJE 1: ANUNCIO OFICIAL (Día 0)
 
 ```
-🚀 **TALLER: CONSTRUÍ TU STARTUP SIN CÓDIGO**
+🚀 **TALLER: DESTRABÁ CUELLOS DE BOTELLA CON IA — SIN CÓDIGO**
 
-¿Tenés una idea de negocio y no sabés cómo empezar?
+¿Tu equipo o tu negocio pierde tiempo entre herramientas, proveedores y “lo vemos la próxima semana”?
 
-En 11 días, te llevo de la idea a una landing funcionando — usando solo AI. Sin saber programar. Sin contratar a nadie.
+En 11 días vas a ubicar **dónde se frena el trabajo** y vas a salir con **una página web publicada** usando Claude, Stitch, Cursor y GitHub Pages — sin ser programador.
 
 **📅 CUÁNDO**
 6 al 16 de Mayo 2026
@@ -45,16 +45,16 @@ Miércoles y Viernes, 7–9 PM (Lima GMT-5)
 Online en vivo (Zoom) + grabaciones + grupo privado
 
 **🛠 QUÉ VAMOS A USAR**
-• Claude (tu co-fundador AI)
-• Google Stitch (diseño sin saber diseñar)
-• Cursor (código sin escribir código)
-• GitHub Pages (hosting gratis)
+• Claude (estrategia, textos y ejecución guiada)
+• Google Stitch (UI sin eternizar el diseño)
+• Cursor (cambios concretos y deploy sin senior dev)
+• GitHub Pages (hosting gratis + versionado)
 
 **🎯 QUÉ TERMINÁS CON**
-✓ Landing live con formulario de contacto
-✓ Business Canvas validado con AI
-✓ Roadmap de 90 días para tu startup
-✓ Acceso a comunidad de founders
+✓ URL viva con formulario y analytics
+✓ Mapa del negocio clarificado con IA (prioridades reales)
+✓ Plan de 90 días en planes superiores / hábitos para equipos chicos
+✓ Red de profesionales del taller (planes que lo incluyen)
 
 **💰 INVERSIÓN**
 • Esencial: US$97 (grabaciones + grupo)
@@ -64,12 +64,12 @@ Online en vivo (Zoom) + grabaciones + grupo privado
 Precio early bird hasta el 25 de abril.
 
 **¿PARA QUIÉN ES?**
-→ Tenés una idea y no sabés por dónde empezar
-→ Querés lanzar un proyecto paralelo sin dejar tu trabajo
-→ Tu PYME necesita digitalizarse y no sabés cómo
+→ PYMEs y equipos reducidos que necesitan una página que respalde ventas u operación
+→ Freelancers y consultores que quieren velocidad sin depender del WhatsApp eterno
+→ Negocios de servicios que no buscan “armar una startup” sino **destrabar** lo que ya tienen
 
 **¿NO ES PARA VOS SI...**
-→ Ya tenés una startup funcionando con equipo técnico completo
+→ Ya tenés desarrollo interno full-time y flujo de deploy sin fricción
 
 ---
 
