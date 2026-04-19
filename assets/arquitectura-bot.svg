@@ -1,0 +1,64 @@
+<svg width="1200" height="650" viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitectura de ClawContentbot</title>
+  <desc id="desc">Diagrama de flujo entre Telegram, servidor Express, configuración y recursos de contenido.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="650" fill="url(#bg)"/>
+  <text x="60" y="70" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="36" font-weight="800">Arquitectura ClawContentbot</text>
+  <text x="60" y="108" fill="#93c5fd" font-family="Inter, Segoe UI, sans-serif" font-size="20">Telegram + Webhook + Configuración del taller + Operación</text>
+
+  <g>
+    <rect x="70" y="180" width="260" height="120" rx="18" fill="url(#box)" stroke="#22d3ee"/>
+    <text x="95" y="230" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="24" font-weight="700">Usuario Telegram</text>
+    <text x="95" y="265" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="18">/start + botones inline</text>
+  </g>
+
+  <g>
+    <rect x="450" y="150" width="320" height="220" rx="18" fill="url(#box)" stroke="#a78bfa"/>
+    <text x="475" y="200" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="26" font-weight="700">claw-content-bot/bot.js</text>
+    <text x="475" y="240" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="18">Express + node-telegram-bot-api</text>
+    <text x="475" y="272" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="18">Webhook, /health, /ready</text>
+    <text x="475" y="304" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="18">Menú, info, precios, WhatsApp</text>
+    <text x="475" y="336" fill="#67e8f9" font-family="Inter, Segoe UI, sans-serif" font-size="16">NODE_ENV Railway/local</text>
+  </g>
+
+  <g>
+    <rect x="900" y="185" width="240" height="110" rx="18" fill="url(#box)" stroke="#34d399"/>
+    <text x="928" y="232" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="23" font-weight="700">Telegram API</text>
+    <text x="928" y="262" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="17">Entrega de updates</text>
+  </g>
+
+  <g>
+    <rect x="450" y="430" width="320" height="160" rx="18" fill="url(#box)" stroke="#f472b6"/>
+    <text x="475" y="476" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="24" font-weight="700">Config & contenido</text>
+    <text x="475" y="510" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="18">.env / .env.example</text>
+    <text x="475" y="540" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="18">workshop.config.json</text>
+    <text x="475" y="570" fill="#cbd5e1" font-family="Inter, Segoe UI, sans-serif" font-size="18">docs + taller-mayo-2026/*</text>
+  </g>
+
+  <path d="M330 240 H440" stroke="url(#line)" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M770 240 H890" stroke="url(#line)" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M890 272 H770" stroke="url(#line)" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M610 370 V420" stroke="url(#line)" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+
+  <text x="356" y="225" fill="#93c5fd" font-family="Inter, Segoe UI, sans-serif" font-size="16">Webhook</text>
+  <text x="800" y="224" fill="#93c5fd" font-family="Inter, Segoe UI, sans-serif" font-size="16">setWebHook()</text>
+  <text x="800" y="294" fill="#93c5fd" font-family="Inter, Segoe UI, sans-serif" font-size="16">Updates</text>
+  <text x="628" y="402" fill="#f9a8d4" font-family="Inter, Segoe UI, sans-serif" font-size="16">lectura</text>
+</svg>
