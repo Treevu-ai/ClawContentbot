@@ -1,3 +1,10 @@
+<!-- readme-hero -->
+<div align="center">
+
+<img src="assets/readme-hero.svg" alt="CLAW CONTENTBOT" width="100%" />
+
+</div>
+
 <div align="center">
   <img src="./assets/banner-clawcontentbot.svg" alt="ClawContentbot banner" width="100%" />
 
